@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const Reset = createGlobalStyle`
   * {
@@ -6,6 +6,10 @@ export const Reset = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+`;
+
+export const App = styled.div`
+  padding: 0 12px;
 `;
 
 export const Typography = createGlobalStyle`

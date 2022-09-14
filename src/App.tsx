@@ -1,14 +1,15 @@
 import React from 'react';
-import * as GS from './GlobalStyle';
-import { AppHeader } from './layout';
+import * as S from './GlobalStyle';
+import { AppHeader, AppToolbar } from './layout';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <GS.Reset />
-      <GS.Typography />
+    <S.App>
+      <S.Reset />
+      <S.Typography />
       <AppHeader />
-    </>
+      <AppToolbar />
+    </S.App>
   );
 }
 
