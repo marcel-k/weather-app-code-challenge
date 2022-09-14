@@ -17,7 +17,7 @@ export type IconName = 'menu' | 'menu_open' | 'home' | 'reader';
 export const Icon: FC<IconProps> = (props) => {
   const {
     name,
-    size = '2rem',
+    size = '1.5rem',
     className = '',
     color = '#000'
   } = props;
@@ -26,8 +26,9 @@ export const Icon: FC<IconProps> = (props) => {
     <S.Icon
       size={size}
       color={color}
-      className={`icon-${name} ${className}`}
+      className={`material-icons ${className}`}
     >
+      {name}
     </S.Icon>
   )
 }

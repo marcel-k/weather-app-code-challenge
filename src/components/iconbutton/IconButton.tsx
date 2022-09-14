@@ -13,13 +13,13 @@ interface IconButtonProps extends S.IconButtonProps, React.ButtonHTMLAttributes<
   onClick: () => void;
   /**
    * default state of icon
-   * @default #fff
+   * @default ##4e4a7c
    */
   iconColor?: string;
 }
 
 export const IconButton: FC<IconButtonProps> = (props) => {
-  const { onClick, iconName, iconColor = '#fff', ...buttonProps } = props;
+  const { onClick, iconName, iconColor = '#4e4a7c', ...buttonProps } = props;
 
   return (
     <S.IconButton onClick={onClick} {...buttonProps}>
