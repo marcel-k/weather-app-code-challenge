@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './GlobalStyle';
-import { AppHeader } from './layout';
+import { AppHeader, AppNavigation } from './layout';
 import { Home } from "./pages";
 
 const App = () => {
@@ -8,8 +8,8 @@ const App = () => {
     <S.App>
       <S.Reset />
       <S.Typography />
-      <S.Fonts />
       <AppHeader />
+      <AppNavigation />
       <Home />
     </S.App>
   );
