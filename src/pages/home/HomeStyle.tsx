@@ -22,11 +22,17 @@ export const Grid = styled.div`
 
 export const CardScroller = styled.div`
   grid-column-start: 1;
-  /* justify-self: center; */
 
   gap: 1rem;
   display: flex;
   overflow-x: auto;
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   > * {
     flex: 0 0 200px;
