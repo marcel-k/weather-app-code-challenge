@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { IconButton } from "../../components";
 
 interface NavProps {
   /**
@@ -14,15 +15,16 @@ export const Nav = styled.nav<NavProps>`
   width: 12.5rem;
   position: absolute;
   transition: transform 0.3s linear;
-  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-12.5rem)'};
+  transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-14rem)'};
 
   background-color: white;
   border-right: 1px solid #ccc;
+`;
 
-  @media only screen and (min-width: 600px) {
-    display: block;
-    transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-8.5rem)'};
-  }
+export const NavCloseButton = styled(IconButton)`
+    position: absolute;
+    right: -1.5rem;
+    margin-top: 2rem;
 `;
 
 export const NavList = styled.ul``;
@@ -33,9 +35,3 @@ export const NavLink = styled.a`
   
 `;
 
-export const NavButtonWrapper = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  padding: 0.75rem;
-`;

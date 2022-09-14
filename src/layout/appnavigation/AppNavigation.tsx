@@ -1,35 +1,28 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from "react";
 import { IconButton } from "../../components";
-import * as S from './AppNavigationStyle';
+
+import * as S from "./AppNavigationStyle";
 
 
 interface AppNavigationProps {
   /**
-   * fires when navigation opens or closes
+   * is the navigation open or not
+   * @default false
    */
-  onOpenToggle?: (open: boolean) => void;
+  open?: boolean;
+  /**
+   * fires when close button is clicked
+   */
+  onCloseClick: () => void;
 }
 
 export const AppNavigation: FC<AppNavigationProps> = (props) => {
-  const { onOpenToggle = () => { } } = props;
-  const [open, setOpen] = useState(false);
+  const { open = false, onCloseClick } = props;
 
-  const toggle = () => {
-    const o = !open;
-    setOpen(o);
-    onOpenToggle(o);
-  }
 
   return (
     <S.Nav open={open}>
-      <S.NavButtonWrapper>
-        <IconButton
-          tabIndex={0}
-          onClick={toggle}
-          arial-label={'Open main menu'}
-          iconName={open ? 'menu_open' : 'menu'}
-        />
-      </S.NavButtonWrapper>
+      <S.NavCloseButton iconName="close" onClick={onCloseClick} />
       <S.NavList role='navigation'>
         <S.NavListItem>
           <S.NavLink href="/">Home</S.NavLink>
