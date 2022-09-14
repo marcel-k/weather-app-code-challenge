@@ -23,7 +23,7 @@ export const IconButton: FC<IconButtonProps> = (props) => {
 
   return (
     <S.IconButton onClick={onClick} {...buttonProps}>
-      <Icon name={iconName} color={iconColor} />
+      <Icon name={iconName} color={iconColor} aria-hidden='true' />
     </S.IconButton>
 
   )

@@ -25,9 +25,8 @@ export const AppNavigation: FC<AppNavigationProps> = (props) => {
       <S.NavButtonWrapper>
         <IconButton
           tabIndex={0}
-          aria-hidden='true'
-          arial-label='Open main menu'
           onClick={toggle}
+          arial-label={'Open main menu'}
           iconName={open ? 'menu_open' : 'menu'}
         />
       </S.NavButtonWrapper>

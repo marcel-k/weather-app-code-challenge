@@ -11,7 +11,6 @@ export const Nav = styled.nav<NavProps>`
   top: 0;
   left:0;
   height: 100%;
-  display: block;
   width: 12.5rem;
   position: absolute;
   transition: transform 0.3s linear;
@@ -21,6 +20,7 @@ export const Nav = styled.nav<NavProps>`
   border-right: 1px solid #ccc;
 
   @media only screen and (min-width: 600px) {
+    display: block;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-8.5rem)'};
   }
 `;
