@@ -9,7 +9,7 @@ export const AppHeader: FC<AppHeaderProps> = (props) => {
   // const { } = props;
   return (
     <S.Header>
-      <S.LogoLink href="/">
+      <S.LogoLink href='/' title='Home'>
         <S.Logo></S.Logo>
       </S.LogoLink>
       <S.Title>Marcel's Weather App</S.Title>
