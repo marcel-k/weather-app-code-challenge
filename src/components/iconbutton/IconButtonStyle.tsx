@@ -12,15 +12,19 @@ export interface IconButtonProps {
 }
 
 export const IconButton = styled.button<IconButtonProps>`
- cursor: pointer;
  border: none;
- background-color: ${({ backgroundColor }) => backgroundColor || '#f58220'};
+ cursor: pointer;
+ min-width: 2.5rem;
+ min-height: 2.5rem;
+ border-radius: 0.75rem;
+ background-color: ${({ backgroundColor }) => backgroundColor || '#fff'};
 
  &:hover {
-  background-color: ${({ hoverColor }) => hoverColor || '#d16909'};
+  color: #6350ee;
+  background-color: ${({ hoverColor }) => hoverColor || '#f7f6ff'};
  }
 
  &:active {
-  transform: scale(.95,.95);
+  transform: scale(.9,.9);
  }
 `

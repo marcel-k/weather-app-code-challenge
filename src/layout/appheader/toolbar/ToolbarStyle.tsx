@@ -6,8 +6,4 @@ export const Toolbar = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: end;
-
-  @media only screen and (min-width: 600px) {
-    margin-left: auto;
-  } 
 `;
