@@ -3,25 +3,40 @@ import styled from 'styled-components'
 export const Home = styled.div`
 `;
 
+
+
 export const Grid = styled.div`
+   gap: 1rem;
    display: grid;
-   gap: 2rem;
+   justify-content: center;
+
    grid-template-columns: 1fr;
 
-   @media only screen and (min-width: 600px) {
-    //tablet 
-    grid-template-columns: 1fr 1fr;
+ @media only screen and (min-width: 600px) {
+    //tablet
+
+    grid-template-columns: minmax(200px, 400px) minmax(400px, 800px);
   }
 
-  @media only screen and (min-width: 1280px) {
-    grid-template-columns: 1fr 1fr 2fr; 
+`;
+
+export const CardScroller = styled.div`
+  grid-column-start: 1;
+  /* justify-self: center; */
+
+  gap: 1rem;
+  display: flex;
+  overflow-x: auto;
+
+  > * {
+    flex: 0 0 200px;
+  }
+
+
+  @media only screen and (min-width: 600px) {
+    grid-column: span 2;
   }
 `;
 
 export const GridItem = styled.div``;
 
-export const GridItemWide = styled.div`
-  @media only screen and (min-width: 600px) and (max-width: 1280px) {
-    grid-column: span 2;
-  }
-`;
