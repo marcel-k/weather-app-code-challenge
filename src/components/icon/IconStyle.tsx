@@ -4,7 +4,7 @@ export interface IconProps {
   /**
    * number will be used as pixels
    * string should be in the format of '1rem'
-   * @default '1.5rem'
+   * @default '2rem'
    */
   size?: number | string;
   /**
@@ -14,6 +14,6 @@ export interface IconProps {
 }
 
 export const Icon = styled.span<IconProps>`
-  font-size: ${({ size }) => size || '1.5rem'};
+  font-size: ${({ size }) => size || '2rem'};
   color: ${({ color }) => color || 'black'};
 `

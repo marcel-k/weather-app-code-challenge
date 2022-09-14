@@ -5,17 +5,19 @@ interface IconProps extends S.IconProps {
   /**
    * icomoon name of the icon
    */
-  name: 'menu' | 'menu_open' | 'home' | 'reader';
+  name: IconName;
   /**
    * Used by styled components when wrapping
    */
   className?: string;
 }
 
+export type IconName = 'menu' | 'menu_open' | 'home' | 'reader';
+
 export const Icon: FC<IconProps> = (props) => {
   const {
     name,
-    size = '1.5rem',
+    size = '2rem',
     className = '',
     color = '#000'
   } = props;
