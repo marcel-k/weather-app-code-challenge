@@ -12,7 +12,6 @@ export interface IconButtonProps {
 }
 
 export const IconButton = styled.button<IconButtonProps>`
- outline: none;
  cursor: pointer;
  border: none;
  background-color: ${({ backgroundColor }) => backgroundColor || '#f58220'};
