@@ -5,6 +5,7 @@ export const Reset = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color: #58595b;
   }
 `;
 

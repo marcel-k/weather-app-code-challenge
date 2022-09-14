@@ -14,7 +14,9 @@ export const Header = styled.header`
   }
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  color: #000;
+`;
 
 export const LogoLink = styled.a``;
 
