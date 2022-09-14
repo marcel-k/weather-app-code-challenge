@@ -8,6 +8,7 @@ const App = () => {
     <S.App>
       <S.Reset />
       <S.Typography />
+      <S.Fonts />
       <AppHeader />
       <Home />
     </S.App>
