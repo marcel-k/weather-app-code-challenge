@@ -12,7 +12,7 @@ interface IconProps extends S.IconProps {
   className?: string;
 }
 
-export type IconName = 'menu' | 'menu_open' | 'home' | 'reader';
+export type IconName = 'menu' | 'search' | 'close' | 'light_mode' | 'dark_mode' | string;
 
 export const Icon: FC<IconProps> = (props) => {
   const {
@@ -26,7 +26,7 @@ export const Icon: FC<IconProps> = (props) => {
     <S.Icon
       size={size}
       color={color}
-      className={`material-icons ${className}`}
+      className={`material-icons-outlined ${className}`}
     >
       {name}
     </S.Icon>
