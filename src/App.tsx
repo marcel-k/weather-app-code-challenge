@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './GlobalStyle';
-import { AppHeader, AppToolbar } from './layout';
+import { AppHeader } from './layout';
 
 const App = () => {
   return (
@@ -8,7 +8,6 @@ const App = () => {
       <S.Reset />
       <S.Typography />
       <AppHeader />
-      <AppToolbar />
     </S.App>
   );
 }

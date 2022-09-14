@@ -1,12 +1,17 @@
 import styled from 'styled-components'
 
 export const Header = styled.header`
-  height: 80px;
   display: flex;
-  gap: 12px;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
+
+  @media only screen and (min-width: 600px) {
+    gap: 12px;
+    height: 80px;
+    flex-direction: row;
+  }
 `;
 
 export const Title = styled.h1``;
