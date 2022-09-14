@@ -9,7 +9,7 @@ export const Reset = createGlobalStyle`
 `;
 
 export const App = styled.div`
-  padding: 0 12px;
+  padding: 0 0.75rem;
 `;
 
 export const Typography = createGlobalStyle`

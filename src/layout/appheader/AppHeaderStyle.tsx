@@ -8,8 +8,8 @@ export const Header = styled.header`
   justify-content: center;
 
   @media only screen and (min-width: 600px) {
-    gap: 12px;
-    height: 80px;
+    gap: 0.75rem;
+    min-height: 5rem;
     flex-direction: row;
   }
 `;
@@ -22,11 +22,11 @@ export const Logo = styled.span`
   &:before {
     content: "";
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     background-color: black;
     background-repeat: no-repeat;
-    background-size: 40px;
+    background-size: 2.5rem;
     background-image: url(/assets/icons/Cloud.svg);
     background-position: center center;
   }
