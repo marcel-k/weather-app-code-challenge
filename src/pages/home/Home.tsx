@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { Card } from "../../components";
+import { DayCard } from "../../features";
 import * as PS from "../PageStyle";
 import * as HS from "./HomeStyle";
 
@@ -30,22 +31,23 @@ export const Home: FC<HomeProps> = (props) => {
           <HS.CardScroller>
             <HS.CardScrollerTitle>Next 14 Days</HS.CardScrollerTitle>
             <HS.CardScrollerContent>
-            {
-              [
-                '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
-                '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
-              ]
-                .map((color, index) =>
-                  <Card
-                    height={'225px'}
-                    backgroundColor={color}
-                    id={`card-weather-forecast-${index + 1}`}
-                    key={`card-weather-forecast-${index + 1}`}
-                  >
-                    Card Weather forecast {index + 1}
-                  </Card>
-                )}
-                </HS.CardScrollerContent>
+              {
+                [
+                  '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
+                  '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
+                ]
+                  .map((color, index) =>
+                    <DayCard
+                      height={'225px'}
+                      date={new Date()}
+                      location={'Bedum'}
+
+                      backgroundColor={color}
+                      id={`card-weather-forecast-${index + 1}`}
+                      key={`card-weather-forecast-${index + 1}`}
+                    />
+                  )}
+            </HS.CardScrollerContent>
           </HS.CardScroller>
         </HS.Grid>
       </HS.Home>

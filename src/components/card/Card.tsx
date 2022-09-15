@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import * as S from './CardStyle';
 
-interface CardProps extends S.CardProps {
+export interface CardProps extends S.CardProps {
   /**
    * card id
    */
