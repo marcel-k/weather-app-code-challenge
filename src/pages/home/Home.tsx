@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Card } from "../../components";
 import * as PS from "../PageStyle";
 import * as HS from "./HomeStyle";
 
@@ -11,26 +12,42 @@ export const Home: FC<HomeProps> = (props) => {
     <PS.Page>
       <HS.Home>
         <HS.Grid>
-          <HS.GridItem id='grid-item-weather-today' style={{ border: '1px solid black', height: '200px' }}>Card 1</HS.GridItem>
-          <HS.GridItem id='grid-item-temperature-and-humidity' style={{ border: '1px solid black', height: '200px' }}>Card 2</HS.GridItem>
-        <HS.CardScroller>
-            <HS.GridItem id='grid-item-forecast-1' style={{ border: '1px solid black', height: '200px' }}>Small Card 1</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-2' style={{ border: '1px solid black', height: '200px' }}>Small Card 2</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-3' style={{ border: '1px solid black', height: '200px' }}>Small Card 3</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-4' style={{ border: '1px solid black', height: '200px' }}>Small Card 4</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-5' style={{ border: '1px solid black', height: '200px' }}>Small Card 5</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-1' style={{ border: '1px solid black', height: '200px' }}>Small Card 6</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-2' style={{ border: '1px solid black', height: '200px' }}>Small Card 7</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-3' style={{ border: '1px solid black', height: '200px' }}>Small Card 8</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-4' style={{ border: '1px solid black', height: '200px' }}>Small Card 9</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-5' style={{ border: '1px solid black', height: '200px' }}>Small Card 10</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-1' style={{ border: '1px solid black', height: '200px' }}>Small Card 11</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-2' style={{ border: '1px solid black', height: '200px' }}>Small Card 12</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-3' style={{ border: '1px solid black', height: '200px' }}>Small Card 13</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-4' style={{ border: '1px solid black', height: '200px' }}>Small Card 14</HS.GridItem>
-            <HS.GridItem id='grid-item-forecast-5' style={{ border: '1px solid black', height: '200px' }}>Small Card 15</HS.GridItem>
+          <Card
+            height={'400px'}
+            id={'card-weather-today'}
+            backgroundColor={'#6452ef'}
+            backgroundImageUrl={'assets/images/card_background-374-314.png'}
+          >
+            Card Weather today
+          </Card>
+          <Card
+            height={'400px'}
+            backgroundColor={'#3addb1'}
+            id={'card-temperature-and-humidity'}
+          >
+            Card temperature and humidity
+          </Card>
+          <HS.CardScroller>
+            <HS.CardScrollerTitle>Next 14 Days</HS.CardScrollerTitle>
+            <HS.CardScrollerContent>
+            {
+              [
+                '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
+                '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
+              ]
+                .map((color, index) =>
+                  <Card
+                    height={'225px'}
+                    backgroundColor={color}
+                    id={`card-weather-forecast-${index + 1}`}
+                    key={`card-weather-forecast-${index + 1}`}
+                  >
+                    Card Weather forecast {index + 1}
+                  </Card>
+                )}
+                </HS.CardScrollerContent>
           </HS.CardScroller>
-          </HS.Grid>
+        </HS.Grid>
       </HS.Home>
     </PS.Page>
   )

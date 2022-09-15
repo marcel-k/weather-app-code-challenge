@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const Home = styled.div`
+
 `;
 
 
@@ -10,7 +11,7 @@ export const Grid = styled.div`
    display: grid;
    justify-content: center;
 
-   grid-template-columns: 1fr;
+   grid-template-columns: 100%;
 
  @media only screen and (min-width: 600px) {
     //tablet
@@ -23,26 +24,30 @@ export const Grid = styled.div`
 export const CardScroller = styled.div`
   grid-column-start: 1;
 
+  @media only screen and (min-width: 600px) { 
+    grid-column: span 2;
+   }
+`;
+
+export const CardScrollerTitle = styled.h2`
+  padding-bottom: 2rem;
+`;
+
+export const CardScrollerContent = styled.div`
   gap: 1rem;
   display: flex;
   overflow-x: auto;
+  padding-bottom: 1.5rem;
 
-  -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-  /* Hide scrollbar for Chrome, Safari and Opera */
-  &::-webkit-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  &::-webkit-scrollbar { /* Chrome, Safari and Opera */
     display: none;
   }
 
-  > * {
-    flex: 0 0 200px;
-  }
-
-
-  @media only screen and (min-width: 600px) {
-    grid-column: span 2;
+  > div {
+    flex: 0 0 9.25rem;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   }
 `;
-
-export const GridItem = styled.div``;
 
