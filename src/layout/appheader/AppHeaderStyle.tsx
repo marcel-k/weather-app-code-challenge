@@ -9,6 +9,5 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
-  color: #000;
-  font-size: 1.5rem;
+  
 `;
