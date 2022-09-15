@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import * as S from './CardStyle';
 
 export interface CardProps extends S.CardProps {
@@ -16,12 +16,12 @@ export interface CardProps extends S.CardProps {
   children?: React.ReactNode;
 }
 
-export const Card: FC<CardProps> = (props) => {
+export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const { children } = props;
 
   return (
-    <S.Card {...props}>
+    <S.Card {...props} ref={ref}>
       {children}
     </S.Card>
   );
-}
+});
