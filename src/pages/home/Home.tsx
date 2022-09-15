@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Card } from "../../components";
-import { DayCard } from "../../features";
+import { DayCard, TemperatureCard } from "../../features";
 import * as PS from "../PageStyle";
 import * as HS from "./HomeStyle";
 
@@ -22,13 +22,23 @@ export const Home: FC<HomeProps> = (props) => {
             backgroundColor={'#6452ef'}
             backgroundImageUrl={'assets/images/card_background-374-314.png'}
           />
-          <Card
+          <TemperatureCard 
+            height={'19rem'}
+            location={'Bedum'}
+            endDate={new Date()}
+            startDate={new Date()}
+            backgroundColor={'#3addb1'}
+            id={'card-temperature-and-humidity'}
+          />
+
+
+          {/* <Card
             height={'300px'}
             backgroundColor={'#3addb1'}
             id={'card-temperature-and-humidity'}
           >
             Card temperature and humidity
-          </Card>
+          </Card> */}
           <HS.CardScroller>
             <HS.CardScrollerTitle>Next 14 Days</HS.CardScrollerTitle>
             <HS.CardScrollerContent>
