@@ -1,17 +1,19 @@
 import styled from 'styled-components'
 
 
-export const DayCardContent = styled.div`
+export const DayCardContent = styled.div<{forecast?: boolean}>`
   height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: ${({ forecast }) => forecast ? 'space-between' : 'space-around' };
 `
 
-export const Title = styled.h3`
+export const Title = styled.h3<{ size?: 'medium' | 'larger'}>`
   color: #fff;
-  font-size: 1rem;
+  font-size: ${({ size = 'medium' }) => size === 'larger' ? '1.25rem' : '1rem'};
+  font-weight: 700;
+  padding-bottom: 0.5rem;
 `;
 
 export const TemperatureMinMaxWrapper = styled.div`
@@ -22,13 +24,22 @@ export const TemperatureMinMaxWrapper = styled.div`
   justify-content: space-evenly;
 `;
 
-export const Temperature = styled.span<{ transparent?: boolean, size?: 'small' | 'medium' | 'large' }>`
+export const Temperature = styled.span<{ transparent?: boolean, size?: 'smallest' | 'small' | 'medium' | 'large' }>`
   color: #fff;
   opacity: ${({ transparent }) => transparent ? 0.5 : 1};
-  font-size: ${({ size = 'medium' }) => size === 'large' ? '5rem' : size === 'medium' ? '2rem' : '1rem'};
+  font-size: ${({ size = 'medium' }) => size === 'large' ? '6rem' : size === 'medium' ? '2rem' : size === 'small' ? '1.5rem' : '1rem'};
 `;
 
-export const Caption = styled.caption``;
+export const WeatherDescription = styled.span`
+  color: #fff;
+  font-size: 1.25rem;
+`;
+
+export const SectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 export const WeatherIcon = styled.div``;
 export const ForecastWeatherIcon = styled.div`

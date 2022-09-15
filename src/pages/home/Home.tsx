@@ -13,16 +13,17 @@ export const Home: FC<HomeProps> = (props) => {
     <PS.Page>
       <HS.Home>
         <HS.Grid>
-          <Card
-            height={'400px'}
+          <DayCard
+            height={'19rem'}
+            forecast={false}
+            date={new Date()}
+            location={'Bedum'}
             id={'card-weather-today'}
             backgroundColor={'#6452ef'}
             backgroundImageUrl={'assets/images/card_background-374-314.png'}
-          >
-            Card Weather today
-          </Card>
+          />
           <Card
-            height={'400px'}
+            height={'300px'}
             backgroundColor={'#3addb1'}
             id={'card-temperature-and-humidity'}
           >
@@ -38,10 +39,9 @@ export const Home: FC<HomeProps> = (props) => {
                 ]
                   .map((color, index) =>
                     <DayCard
-                      height={'225px'}
                       date={new Date()}
+                      height={'13.25rem'}
                       location={'Bedum'}
-
                       backgroundColor={color}
                       id={`card-weather-forecast-${index + 1}`}
                       key={`card-weather-forecast-${index + 1}`}
