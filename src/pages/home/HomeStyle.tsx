@@ -30,7 +30,7 @@ export const CardScroller = styled.div`
 `;
 
 export const CardScrollerTitle = styled.h2`
-  padding-bottom: 2rem;
+  padding: 2rem 0;
 `;
 
 export const CardScrollerContent = styled.div`

@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { FC, useLayoutEffect, useRef } from "react";
+
 import { Card, CardProps, Chart } from "../../components";
-import debounce from 'lodash.debounce';
 
 interface TemperatureCardProps extends CardProps {
   /**
@@ -41,7 +41,7 @@ export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
         chartRef.current = { update, remove };
       }
 
-      //TODO: lodash.debounce?
+      //TODO: debounce?
       chartRef.current?.update(d, width, height)
     });
 
