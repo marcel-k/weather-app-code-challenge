@@ -41,7 +41,12 @@ export const SectionWrapper = styled.div`
   align-items: center;
 `;
 
-export const WeatherIcon = styled.div``;
+export const BrandImage = styled.img`
+  position: absolute;
+  right: -0.75rem;
+  bottom: -0.75rem;
+  width: 8rem;
+`;
 export const ForecastWeatherIcon = styled.div`
   /* height: 80px; */
 `;
