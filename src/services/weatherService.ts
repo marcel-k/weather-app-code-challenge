@@ -20,9 +20,9 @@ export async function getCurrentWeather(location: Location) {
 /**
  * Get the weather forecast of a given day, max five day's in the future
  * @param location
- * @param daysInTheFuture number of the day to add to today, starting with 1 for tomorrow and max 5
+ * @param daysInTheFuture number of the day to add to today, starting with 1 for tomorrow and max 5 for the weatherApi and 14 for mockData
  */
-export async function getWeatherForecastByDay(location: Location, daysInTheFuture: 0 | 1 | 2 | 3 | 4 | 5 = 1) {
+export async function getWeatherForecastByDay(location: Location, daysInTheFuture: number) {
   const fiveDayForecast = await getFiveDayForecast(location);
 
   if (daysInTheFuture === 0) {
@@ -30,7 +30,7 @@ export async function getWeatherForecastByDay(location: Location, daysInTheFutur
   } else {
     const today = new Date();
     const date = new Date(today);
-    date.setDate(today.getDate() + 1);
+    date.setDate(today.getDate() + daysInTheFuture);
     date.setHours(15, 0, 0, 0);
     const timeValue = date.getTime();
 
