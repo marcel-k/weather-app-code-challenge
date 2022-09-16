@@ -16,10 +16,9 @@ export const Home: FC<HomeProps> = (props) => {
           <DayCard
             height={'19rem'}
             forecast={false}
-            date={new Date()}
-            location={'Bedum'}
             id={'card-weather-today'}
             backgroundColor={'#6452ef'}
+            location={{ cityName: 'Groningen', countryCode: 'NL' }}
             backgroundImageUrl={'assets/images/card_background-374-314.png'}
           />
           <TemperatureCard 
@@ -31,21 +30,22 @@ export const Home: FC<HomeProps> = (props) => {
             id={'card-temperature-and-humidity'}
           />
           <HS.CardScroller>
-            <HS.CardScrollerTitle>Next 14 Days</HS.CardScrollerTitle>
+            <HS.CardScrollerTitle>Weather forecast</HS.CardScrollerTitle>
             <HS.CardScrollerContent>
               {
                 [
-                  '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
-                  '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
+                  '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8',
+                  //'#3addb1', '#6452ef',
+                  // '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
                 ]
                   .map((color, index) =>
                     <DayCard
-                      date={new Date()}
                       height={'13.25rem'}
-                      location={'Bedum'}
                       backgroundColor={color}
+                      daysInTheFuture={index + 1}
                       id={`card-weather-forecast-${index + 1}`}
                       key={`card-weather-forecast-${index + 1}`}
+                      location={{ cityName: 'Groningen', countryCode: 'NL' }}
                     />
                   )}
             </HS.CardScrollerContent>

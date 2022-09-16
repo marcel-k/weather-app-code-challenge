@@ -1,16 +1,22 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Card, CardProps, Icon } from '../../components';
 import * as S from './DayCardStyle';
+import { getCurrentWeather, 
+  WeatherData, Location, 
+  getWeatherForecastByDay, weatherMainToIconNameMapping } from '../../services/';
 
 interface DayCardProps extends CardProps {
   /**
-   * The local date which the card should display the weather of
+   * How many days in the future the forecast should be
+   * Max 5 for the real weather api and 14 when using mock data.
+   * 0 is today
+   * @default 0
    */
-  date: Date;
+  daysInTheFuture?: number;
   /**
    * the location / city which the card should display the weather of
    */
-  location: string;
+  location: Location;
   /**
    * If the card is a forecast tile,
    * displaying a min and max temperature and the day name
@@ -24,33 +30,51 @@ interface DayCardProps extends CardProps {
 }
 
 export const DayCard: FC<DayCardProps> = (props) => {
-  const { date, location, forecast = true, ...cardProps } = props;
+  const [dataset, setDataset] = useState<WeatherData>();
+  const { location, forecast = true, daysInTheFuture = 0, ...cardProps } = props;
+
+  useEffect(() => {
+    const getData = async () => {
+      let weather: WeatherData;
+      if (!forecast) {
+        weather = await getCurrentWeather(location);
+      } else {
+
+        weather = await getWeatherForecastByDay(location, daysInTheFuture);
+      }
+
+      setDataset(weather);
+    }
+
+    getData();
+  }, [daysInTheFuture, forecast, location]);
+
 
   return (
     <Card {...cardProps}>
       <S.DayCardContent forecast={forecast}>
         {forecast &&
           <>
-            <S.Title>Tuesday</S.Title>
+            <S.Title>{dataset?.date.toLocaleDateString('en-EN', { weekday: 'long' })}</S.Title>
             <S.ForecastWeatherIcon>
-            <Icon color={'#fff'} name={'wb_sunny'} size={'3rem'} />
-          </S.ForecastWeatherIcon>
-          <S.Temperature size={'medium'}>50°</S.Temperature>
-          <S.TemperatureMinMaxWrapper>
-            <S.Temperature transparent size={'smallest'} aria-label={'minimal temperature'}>40°</S.Temperature>
-            <S.Temperature size={'smallest'} aria-label={'maximum temperature'}>60°</S.Temperature>
-          </S.TemperatureMinMaxWrapper>
+              <Icon color={'#fff'} name={weatherMainToIconNameMapping[dataset?.main.toLowerCase() as string]} size={'3rem'} />
+            </S.ForecastWeatherIcon>
+            <S.Temperature size={'medium'}>{dataset?.temperature}°</S.Temperature>
+            <S.TemperatureMinMaxWrapper>
+              <S.Temperature transparent size={'smallest'} aria-label={'minimal temperature'}>{dataset?.minTemperature}°</S.Temperature>
+              <S.Temperature size={'smallest'} aria-label={'maximum temperature'}>{dataset?.maxTemperature}°</S.Temperature>
+            </S.TemperatureMinMaxWrapper>
           </>
         }
         {!forecast &&
           <>
             <S.SectionWrapper>
-              <S.Temperature size='large' aria-label='temperature'>50°</S.Temperature>
-              <S.WeatherDescription>Clouds and Sun</S.WeatherDescription>
+              <S.Temperature size='large' aria-label='temperature'>{dataset?.temperature}°</S.Temperature>
+              <S.WeatherDescription>{dataset?.description}</S.WeatherDescription>
             </S.SectionWrapper>
             <S.SectionWrapper>
               <S.Title size={'larger'}>Humidity</S.Title>
-              <S.Temperature size="small" transparent>35°</S.Temperature>
+              <S.Temperature size="small" transparent>{dataset?.humidity}°</S.Temperature>
             </S.SectionWrapper>
           </>
         }
