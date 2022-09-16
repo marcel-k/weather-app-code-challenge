@@ -3,7 +3,8 @@ import * as S from './IconStyle';
 
 interface IconProps extends S.IconProps {
   /**
-   * icomoon name of the icon
+   * material ui name of the icon
+   * https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Outlined
    */
   name: IconName;
   /**
@@ -12,7 +13,7 @@ interface IconProps extends S.IconProps {
   className?: string;
 }
 
-export type IconName = 'menu' | 'search' | 'close' | 'light_mode' | 'dark_mode' | string;
+export type IconName = string;
 
 export const Icon: FC<IconProps> = (props) => {
   const {
