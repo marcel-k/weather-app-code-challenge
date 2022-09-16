@@ -1,0 +1,1 @@
+The 'components' folder contains reusable view components, usually stateless and externally controlled.

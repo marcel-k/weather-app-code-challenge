@@ -1,0 +1,1 @@
+The 'context' folder contains the react context objects that are provided by the app
