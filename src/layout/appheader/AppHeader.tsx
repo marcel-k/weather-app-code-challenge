@@ -15,7 +15,7 @@ interface AppHeaderProps {
 }
 
 export const AppHeader: FC<AppHeaderProps> = (props) => {
-  const { onOpenNavClick = () => { }, title = 'Bedum, Netherlands' } = props;
+  const { onOpenNavClick = () => { }, title = 'Groningen, NL' } = props;
 
   return (
     <S.Header>
