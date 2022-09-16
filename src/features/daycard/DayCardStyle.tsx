@@ -33,6 +33,9 @@ export const Temperature = styled.span<{ transparent?: boolean, size?: 'smallest
 export const WeatherDescription = styled.span`
   color: #fff;
   font-size: 1.25rem;
+  &::first-letter {
+    text-transform: capitalize;
+  }
 `;
 
 export const SectionWrapper = styled.div`
