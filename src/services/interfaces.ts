@@ -251,7 +251,7 @@ export type CountryCode =
   | 'ZW';
 
 
-export interface CurrentWeatherResponse {
+export interface WeatherApiResponse {
   coord: {
     lon: number;
     lat: number;
@@ -264,8 +264,9 @@ export interface CurrentWeatherResponse {
   clouds: { all: number; }
   dt: number;
   sys: { type: number; id: number; country: CountryCode; sunrise: number; sunset: number; };
-  timezone: number;
+  timezone?: number;
   id: number;
   name: string;
   cod: number;
+  dt_txt?: string;
 }

@@ -1,2 +1,2 @@
-export { getCurrentWeather } from './weatherService';
-export type { CurrentWeatherData } from './weatherService';
+export { getCurrentWeather, getFiveDayForecast, getWeatherForecastByDay } from './weatherService';
+export type { WeatherData as CurrentWeatherData } from './weatherService';
