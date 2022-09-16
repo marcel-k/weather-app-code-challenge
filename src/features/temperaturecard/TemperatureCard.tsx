@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect, useRef } from "react";
+import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { Card, CardProps, Chart } from "../../components";
 
@@ -21,12 +21,44 @@ interface TemperatureCardProps extends CardProps {
   children?: never;
 }
 
-const d = [{ label: "A", value: 10 }, { label: "B", value: 30 }, { label: "C", value: 40 }, { label: "D", value: 20 }];
+const d = {
+  humidity: [
+    { label: "A", value: 10 }, { label: "B", value: 30 }, { label: "C", value: 40 }, { label: "D", value: 20 },
+    { label: "Z", value: 10 }, { label: "E", value: 30 }, { label: "F", value: 40 }, { label: "G", value: 20 },
+    { label: "H", value: 10 }, { label: "I", value: 30 }, { label: "J", value: 40 }, { label: "K", value: 20 },
+    { label: "L", value: 10 }, { label: "M", value: 30 }, { label: "N", value: 42 }, { label: "O", value: 20 },
+    { label: "P", value: 10 }, { label: "Q", value: 30 }, { label: "R", value: 40 }, { label: "S", value: 20 }],
+  temperature:
+    [
+      { label: "A", value: 24 }, { label: "B", value: 20 }, { label: "C", value: 15 }, { label: "D", value: 11 },
+      { label: "Z", value: 18 }, { label: "E", value: 22 }, { label: "F", value: 27 }, { label: "G", value: 23 },
+      { label: "H", value: 17 }, { label: "I", value: 10 }, { label: "J", value: 16 }, { label: "K", value: 21 },
+      { label: "L", value: 24 }, { label: "M", value: 25 }, { label: "N", value: 20 }, { label: "O", value: 16 },
+      { label: "P", value: 11 }, { label: "Q", value: 15 }, { label: "R", value: 18 }, { label: "S", value: 21 }],
+};
+
+const d2 = {
+  humidity: [
+    { label: "A", value: 20 }, { label: "B", value: 80 }, { label: "C", value: 10 }, { label: "D", value: 20 },
+    { label: "Z", value: 20 }, { label: "E", value: 40 }, { label: "F", value: 10 }, { label: "G", value: 20 },
+    { label: "H", value: 20 }, { label: "I", value: 40 }, { label: "J", value: 10 }, { label: "K", value: 20 },
+    { label: "L", value: 20 }, { label: "M", value: 40 }, { label: "N", value: 12 }, { label: "O", value: 20 },
+    { label: "P", value: 20 }, { label: "Q", value: 40 }, { label: "R", value: 10 }, { label: "S", value: 20 }
+  ],
+  temperature: [
+    { label: "A", value: 24 }, { label: "B", value: 30 }, { label: "C", value: 15 }, { label: "D", value: 21 },
+    { label: "Z", value: 28 }, { label: "E", value: 32 }, { label: "F", value: 17 }, { label: "G", value: 23 },
+    { label: "H", value: 27 }, { label: "I", value: 30 }, { label: "J", value: 16 }, { label: "K", value: 21 },
+    { label: "L", value: 24 }, { label: "M", value: 35 }, { label: "N", value: 10 }, { label: "O", value: 26 },
+    { label: "P", value: 21 }, { label: "Q", value: 35 }, { label: "R", value: 18 }, { label: "S", value: 21 }
+  ],
+}
 
 export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
   const { startDate, endDate, location, ...cardProps } = props;
 
-  const chartRef = useRef<{ update: Function, remove: Function } | null>(null);
+  const [dataset, setDataset] = useState(d);
+  const chartRef = useRef<{ update: Function } | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
@@ -35,21 +67,28 @@ export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
       const { width, height } = entries[0].contentRect;
 
       if (!chartRef.current) {
-        const { initialize, update, remove } = Chart("chart-goes-here", width, height);
+        const { initialize, update } = Chart("chart-goes-here", width, height);
 
         initialize();
-        chartRef.current = { update, remove };
+        chartRef.current = { update };
       }
 
-      //TODO: debounce?
-      chartRef.current?.update(d, width, height)
+      // Note: could debounce but not really necessary
+      chartRef.current?.update(dataset, width, height);
     });
 
     observer.observe(cardRef.current as HTMLDivElement);
 
     return () => {
       observer.disconnect();
-      chartRef.current?.remove();
+    };
+  }, [dataset]);
+
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setDataset(d2), 2000);
+    return () => {
+      window.clearTimeout(timeout);
     };
   }, []);
 

@@ -1,14 +1,19 @@
 import "d3-transition";
 
-import { max } from "d3-array";
+import { max, min } from "d3-array";
+import { axisLeft } from "d3-axis";
 import { scaleBand, scaleLinear } from "d3-scale";
 import { select } from "d3-selection";
-import { axisLeft, axisBottom } from "d3-axis";
-
+import { curveNatural, line } from "d3-shape";
 
 export interface DataItem {
   label: string;
   value: number;
+}
+
+export interface ChartData {
+  humidity: DataItem[];
+  temperature: DataItem[];
 }
 
 const margin = { left: 40, top: 10, right: 10, bottom: 40 };
@@ -34,7 +39,7 @@ export function Chart(parentElementId: string, width: number, height: number) {
       .append("svg")
       .attr("class", "chart")
       .attr("width", width)
-      .attr("height", height)
+      .attr("height", height);
 
     // define a container g element that holds the chart parts
     // and transforms them all at once based on margin values
@@ -60,8 +65,8 @@ export function Chart(parentElementId: string, width: number, height: number) {
       .attr("class", "content");
   }
 
-  const update = function (data: DataItem[], width: number, height: number) {
-    console.log('update');
+  const update = function (data: ChartData, width: number, height: number) {
+    const { humidity, temperature } = data;
     // substract the margins before using the height and width
     const contentHeight = height - margin.top - margin.bottom;
     const contentWidth = width - margin.left - margin.right;
@@ -71,97 +76,98 @@ export function Chart(parentElementId: string, width: number, height: number) {
     xAxis.attr("transform", `translate(0, ${contentHeight})`)
 
     // isolate the values that we use to calculate and draw the chart
-    const dataValues = data.map((d) => d.value);
+    const dataValues = humidity.concat(temperature).map((d) => d.value);
 
     // (re)define the x scale band,
     // set the domain (in this case we create a tick for each item in the array),
     // and set the range, from left to right
     const xScale = scaleBand()
       .padding(0.2)
-      .domain(data.map((d) => d.label))
-      .range([0, contentWidth]);
+      .range([0, contentWidth])
+      .domain(humidity.map((d) => d.label));
 
     // (re)define the y scale linear,
-    // set the domain (from 0 to data max),
+    // set the domain from data min (at least 0) to data max,
     // and set the range, from bottom to top
+    let minDomain = min(dataValues) as number;
+    minDomain = minDomain < 0 ? minDomain : 0;
     const yScale = scaleLinear()
-      .domain([0, max(dataValues) as number])
-      //.nice()
+      .domain([minDomain, max(dataValues) as number])
+      .nice()
       .range([contentHeight, 0]);
 
     // select all (non-)existing rect elements
-    // and bind our data to the selection
-    const selection = content?.selectAll("rect").data(data);
+    // and bind our (new) data to the selection
+    const rectSelection = content?.selectAll("rect").data(humidity);
 
-    // update
-    // transition existing rect elements in our selection that are already present in the DOM
-    // to their correct height and y position
-    selection
-      ?.transition()
-      .duration(300)
-      .attr("y", (d) => yScale(d.value))
-      .attr("height", (d) => contentHeight - yScale(d.value));
-
-    //exit
-    // select any rects in the DOM that don't exits in the data (.length) anymore
-    // transition them to 0 height and to the bottom of the chart
-    // and remove them from the DOM
-    selection
-      ?.exit()
-      .transition()
-      .duration(300)
-      .attr("height", 0)
-      .attr("y", (_d) => yScale(0))
-      .remove();
-
-    // transition our existing elements to the correct width and x 
-    // if there is any change in the length of the data
-    // but wait until the height and y transition is done AND the bars that should be removed are removed
-    selection
-      ?.transition()
-      .delay(300)
-      .attr("width", xScale.bandwidth())
-      .attr("x", (d) => xScale(d.label) as number);
-
-
-    // define any missing rect elements (data.length) with enter and append them to the DOM,
-    // set the x, y, height, width and fill
+    
+    // set the x, y, height, width and fill of each rect
     // and transition them to their correct height and y position
     // The first time this is done, no bars are present in the DOM so they will all be appended
-    selection
-      ?.enter()
-      .append("rect")
-      .attr("height", 0)
-      .attr("fill", "#294899")
-      .attr("y", (_d) => yScale(0))
-      .attr("width", xScale.bandwidth())
-      .attr("x", (d) => xScale(d.label) as number)
+    rectSelection
+      .join((enter) =>
+      // define any missing rect elements (data.length) with enter and append them to the DOM
+        enter.append('rect')
+          .attr("height", 0)
+          .attr('rx', '0.75rem')
+          .attr("fill", "#fff")
+          .attr("opacity", "0.3")
+          .attr("y", (_d) => yScale(0))
+          .attr("width", xScale.bandwidth())
+          .attr("x", (d) => xScale(d.label) as number)
+      )
       .transition()
-      .delay(300)
+      .delay(100)
       .duration(300)
       .attr("y", (d) => yScale(d.value))
+      .attr("width", xScale.bandwidth())
+      .attr("x", (d) => xScale(d.label) as number)
       .attr("height", (d) => contentHeight - yScale(d.value));
 
-    // transition and update the axis with d3 axis function
-    xAxis
-      ?.transition()
+    const temperatureLineGenerator = line<DataItem>()
+      .curve(curveNatural)
+      .y((d) => yScale(d.value))
+      .x((d) => xScale(d.label) as number + xScale.bandwidth() / 2);
+
+    const temperaturePath =
+      content
+        .selectAll("path")
+        .data([temperature]);
+
+
+    temperaturePath
+      .join('path')
+      .attr("fill", "none")
+      .attr("stroke", "#fff")
+      .attr("stroke-opacity", "1")
+      .attr("stroke-width", '0.5rem')
+      .attr("id", "temperature-line")
+      .attr("stroke-linecap", "round")
+      .transition()
+      .delay(100)
       .duration(300)
-      .delay(300)
-      .call(axisBottom(xScale));
+      .attr("d", temperatureLineGenerator);
+
+    const yAxisGenerator = axisLeft(yScale)
+      .tickValues(yScale.domain())
+      .tickFormat((tick) => `${tick}°`);
 
     yAxis
       ?.transition()
       .duration(300)
-      .call(axisLeft(yScale));
-  }
-
-  const remove = function () {
-    svg?.remove();
+      .call(yAxisGenerator);
+    // style the y-axis
+    yAxis?.select('.domain').remove();
+    yAxis?.selectAll('.tick line').remove();
+    yAxis?.selectAll('.tick text')
+      .attr('opacity', 0.5)
+      .attr('fill', '#fff')
+      .attr('font-size', '1rem')
+      .attr('font-weight', '700')
   }
 
   return {
     initialize,
-    update,
-    remove
+    update
   };
 }
