@@ -1,24 +1,20 @@
-import React, { useState } from 'react';
-import * as S from './GlobalStyle';
-import { AppHeader, AppNavigation } from './layout';
+import React from "react";
+
+import * as S from "./GlobalStyle";
+import { useToggle } from "./hooks";
+import { AppHeader, AppNavigation } from "./layout";
 import { Home } from "./pages";
 
-const App = () => {
-  const [navOpen, setNavOpen] = useState(false);
-  const handleOpenNavClick = () => {
-    setNavOpen(true);
-  };
 
-  const handleCloseNavClick = () => {
-    setNavOpen(false);
-  }
+const App = () => {
+  const [navOpen, toggleNavOpen] = useToggle(false);
 
   return (
     <S.App>
       <S.Reset />
       <S.Typography />
-      <AppHeader onOpenNavClick={handleOpenNavClick} />
-      <AppNavigation open={navOpen} onCloseClick={handleCloseNavClick} />
+      <AppHeader onOpenNavClick={toggleNavOpen} />
+      <AppNavigation open={navOpen} onCloseClick={toggleNavOpen} />
       <Home />
     </S.App>
   );
