@@ -19,6 +19,7 @@ export async function getCurrentWeather(location: Location) {
 
 /**
  * Get the weather forecast of a given day, max five day's in the future
+ * // TODO: get min and max temperature by looking at the whole day?
  * @param location
  * @param daysInTheFuture number of the day to add to today, starting with 1 for tomorrow and max 5 for the weatherApi and 14 for mockData
  */
