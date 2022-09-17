@@ -10,11 +10,12 @@ interface HomeProps {
 }
 
 export const Home: FC<HomeProps> = (_props) => {
-
   const scrollerRef = useRef<HTMLDivElement>(null);
+
   const scrollLeft = () => {
     scrollerRef.current?.scrollBy({ behavior: 'smooth', left: 164, top: 0 });
   };
+  
   const scrollRight = () => {
     scrollerRef.current?.scrollBy({ behavior: 'smooth', left: -164, top: 0 });
   };
