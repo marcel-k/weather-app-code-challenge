@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import * as S from './PopoverStyle';
 
-interface PopoverProps {
+export interface PopoverProps {
   /**
    * @default false
    */
@@ -18,16 +18,20 @@ interface PopoverProps {
 }
 
 export const Popover: FC<PopoverProps> = (props) => {
-  const { open = false, onClose = () => {}, children } = props;
+  const { open = false, onClose = () => { }, children } = props;
 
   return (
-    <S.Backdrop onClick={onClose}>
-      <S.Popover open={open}>
-        <S.CloseButton iconName="close" onClick={onClose} />
-        <S.PopoverContent>
-          {children}
-        </S.PopoverContent>
-      </S.Popover>
-    </S.Backdrop>
+    <>
+      {open &&
+        <S.Backdrop onClick={onClose}>
+          <S.Popover open>
+            <S.CloseButton iconName="close" onClick={onClose} />
+            <S.PopoverContent>
+              {children}
+            </S.PopoverContent>
+          </S.Popover>
+        </S.Backdrop>
+      }
+    </>
   )
 }

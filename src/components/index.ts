@@ -13,3 +13,4 @@ export type { ChartData } from './chart/Chart';
 export { Button } from './button/Button';
 
 export { Popover } from './popover/Popover';
+export type { PopoverProps } from './popover/Popover';

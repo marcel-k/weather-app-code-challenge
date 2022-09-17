@@ -25,7 +25,7 @@ export const Backdrop = styled.div`
 `;
 
 export const PopoverContent = styled.div`
-
+  height: 100%;
 `;
 
 export const CloseButton = styled(IconButton)`
