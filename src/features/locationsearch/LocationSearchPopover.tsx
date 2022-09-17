@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useContext, useState } from 'react'
+import React, { MouseEvent, ChangeEvent, FC, useContext, useState } from 'react'
 import { Popover, PopoverProps } from "../../components"
 import { LocationContext } from "../../context";
 import { CountryCode } from "../../services";
@@ -16,9 +16,12 @@ export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => 
   const [formState, setFormState] = useState({ cityname: '', countrycode: '' as CountryCode });
   const { changeLocation } = useContext(LocationContext);
 
-  const handleOkClick = () => {
-    changeLocation({ cityName: formState.cityname, countryCode: formState.countrycode });
-    onClose();
+  const handleOkClick = (e: MouseEvent) => {
+    if (!!formState.cityname && !!formState.countrycode) {
+      e.preventDefault();
+      changeLocation({ cityName: formState.cityname, countryCode: formState.countrycode });
+      onClose();
+    }
   };
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>, name: string) => {
@@ -30,18 +33,27 @@ export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => 
 
   return (
     <Popover onClose={onClose} {...popoverProps}>
-      <S.InputForm>
+      <S.InputForm onSubmit={e => e.preventDefault()}>
         <S.Fieldset>
           <S.InputLabel htmlFor={'cityname'}>CityName</S.InputLabel>
-          <S.Input name={'cityname'} type={'search'} onChange={(e) => handleInputChange(e, 'cityname')} />
+          <S.Input
+            required
+            type={'search'}
+            name={'cityname'}
+            onChange={(e) => handleInputChange(e, 'cityname')}
+          />
         </S.Fieldset>
         <S.Fieldset>
           <S.InputLabel htmlFor="countrycode">CountryCode</S.InputLabel>
-          <S.Input name={'countrycode'} type={'search'} onChange={(e) => handleInputChange(e, 'cityname')} />
+          <S.Input
+            required
+            type={'search'}
+            name={'countrycode'}
+            onChange={(e) => handleInputChange(e, 'countrycode')}
+          />
         </S.Fieldset>
-
+        <S.OkButton type={'submit'} onClick={handleOkClick}>OK</S.OkButton>
       </S.InputForm>
-      <S.OkButton onClick={handleOkClick}>OK</S.OkButton>
     </Popover>
   )
 }
