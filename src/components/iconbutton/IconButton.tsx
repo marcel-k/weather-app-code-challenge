@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Icon, IconName } from '../icon/Icon';
-import * as S from './IconButtonStyle';
 import { Button, ButtonProps } from '../button/Button';
 
 interface IconButtonProps extends ButtonProps {
