@@ -8,7 +8,7 @@ interface ToolbarProps {
 }
 
 export const Toolbar: FC<ToolbarProps> = (_props) => {
-  const { changeLocation } = useContext(LocationContext);
+  const { openPopover } = useContext(LocationContext);
   return (
     <S.Toolbar role={'toolbar'}>
       <IconButton
@@ -16,7 +16,7 @@ export const Toolbar: FC<ToolbarProps> = (_props) => {
         title={'Sadly, dark mode has not been implemented yet!'}
         onClick={() => { alert('Sadly, dark mode has not been implemented yet!') }}
       />
-      <IconButton iconName="search" onClick={() => { changeLocation({ cityName: 'Amsterdam', countryCode: 'NL' }) }} />
+      <IconButton iconName="search" onClick={openPopover} />
     </S.Toolbar>
   )
 };
