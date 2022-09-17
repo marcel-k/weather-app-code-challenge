@@ -131,9 +131,10 @@ const fetchWeatherData = async (location: Location) => {
 
 const mapApiResultToWeatherData = function (apiResult: { list: WeatherApiResponse[] }) {
   const data: WeatherData[] = apiResult.list.map(({ main, weather, dt_txt }) => {
+
     return {
       main: weather[0].main,
-      date: new Date(dt_txt as string),
+      date: new Date(dt_txt?.replace(/-/g, '/') as string),
       humidity: Math.round(main.humidity),
       temperature: Math.round(main.temp),
       description: weather[0].description,
