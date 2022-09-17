@@ -1,0 +1,15 @@
+{
+  "short_name": "Weather App",
+  "name": "Code Challenge Weather App",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#6452ef",
+  "background_color": "#ffffff"
+}
