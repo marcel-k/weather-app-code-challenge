@@ -3,6 +3,7 @@
 This code challenge is created for a Ordina code challenge.
 
 The app has been deployed and is available here: https://marcel-k.github.io/weather-app-code-challenge/
+
 The app is based on a opensource design: https://www.uplabs.com/posts/weather-app-freebie
 
 The app has been (manually) tested with browsers chrome, safari, brave and chrome on android mobile and tablet
