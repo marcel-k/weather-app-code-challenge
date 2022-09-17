@@ -1,14 +1,20 @@
-import React, { MouseEvent, ChangeEvent, FC, useContext, useState } from 'react'
-import { Popover, PopoverProps } from "../../components"
-import { LocationContext } from "../../context";
-import { CountryCode } from "../../services";
+import React, { ChangeEvent, FC, MouseEvent, useContext, useState } from 'react';
 
+import { Popover, PopoverProps } from '../../components';
+import { LocationContext } from '../../context';
+import { CountryCode } from '../../services';
 import * as S from './LocationSearchPopoverStyle';
 
 interface LocationSearchPopoverProps extends PopoverProps {
 
 }
 
+/**
+ * Complex popover component that displays a form for inputting a geolocation.
+ * Will change the location property on the LocationContext when ok is clicked.
+ * @param props 
+ * @returns 
+ */
 export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => {
   const { onClose = () => { }, ...popoverProps } = props;
 

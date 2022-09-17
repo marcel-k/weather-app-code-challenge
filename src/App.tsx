@@ -1,14 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
-import { LocationContext } from "./context";
-import { LocationContextValue } from "./context/locationContext";
-import { LocationSearchPopOver } from "./features";
-import * as S from "./GlobalStyle";
-import { useToggle } from "./hooks";
-import { AppHeader, AppNavigation } from "./layout";
-import { Home } from "./pages";
-import { getCurrentLocation, Location } from "./services";
+import { LocationContext } from './context';
+import { LocationContextValue } from './context/locationContext';
+import { LocationSearchPopOver } from './features';
+import * as S from './GlobalStyle';
+import { useToggle } from './hooks';
+import { AppHeader, AppNavigation } from './layout';
+import { getCurrentLocation, Location } from './services';
 
 
 const App = () => {

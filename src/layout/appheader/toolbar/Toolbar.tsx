@@ -1,12 +1,18 @@
-import React, { FC, useContext } from 'react'
-import { IconButton } from "../../../components";
-import { LocationContext } from "../../../context";
+import React, { FC, useContext } from 'react';
+
+import { IconButton } from '../../../components';
+import { LocationContext } from '../../../context';
 import * as S from './ToolbarStyle';
 
 interface ToolbarProps {
 
 }
-
+/**
+ * Complex component that display toolbar buttons.
+ * Uses the LocationContext to open the location popover.
+ * @param props 
+ * @returns 
+ */
 export const Toolbar: FC<ToolbarProps> = (_props) => {
   const { location, popoverOpen, openPopover } = useContext(LocationContext);
   return (

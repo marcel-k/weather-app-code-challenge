@@ -14,6 +14,11 @@ interface IconButtonProps extends ButtonProps {
   iconColor?: string;
 }
 
+/**
+ * Simple icon button component that extends button component
+ * @param props 
+ * @returns 
+ */
 export const IconButton: FC<IconButtonProps> = (props) => {
   const { onClick, iconName, iconColor = '#4e4a7c', ...buttonProps } = props;
 

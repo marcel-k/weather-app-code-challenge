@@ -1,6 +1,7 @@
-import React, { FC } from "react";
-import * as PS from "../PageStyle";
-import * as S from "./AboutStyle";
+import React, { FC } from 'react';
+
+import * as PS from '../PageStyle';
+import * as S from './AboutStyle';
 
 interface AboutProps {
 

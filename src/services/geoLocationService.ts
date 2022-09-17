@@ -2,6 +2,11 @@ import { Location, ReverseGeoLocationApiResponse } from './interfaces';
 
 const { apiKey, reverseGeocodingApiUrl } = appConfig;
 
+/**
+ * Try to get the current geolocation using the browsers navigator.
+ * Will resolve a Location object when successfull.
+ * @returns Promise of a Location
+ */
 export const getCurrentLocation = () => {
   const promise = new Promise<Location>((resolve, reject) => {
     const successCallback: PositionCallback = async (position) => {
@@ -26,6 +31,7 @@ export const getCurrentLocation = () => {
 }
 
 /**
+ * Get a cityname and coutrycode from the weather service based on a lat and long geolocation.
  * https://openweathermap.org/api/geocoding-api#reverse
  * @param lat 
  * @param lon 

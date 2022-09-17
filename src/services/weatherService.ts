@@ -11,6 +11,11 @@ export interface WeatherData {
   maxTemperature: number;
 }
 
+/**
+ * 
+ * @param location 
+ * @returns 
+ */
 export async function getCurrentWeather(location: Location) {
   const result = await getWeatherForecastByDay(location, 0);
 
@@ -49,7 +54,7 @@ export async function getWeatherForecastByDay(location: Location, daysInTheFutur
 }
 
 /**
- * Fetches a five day weather forecast, divided by into sections of three hours
+ * Fetches a five day weather forecast, divided into sections of three hours
  * Because of max call limitations of the weather api,
  * this function uses a local cache per city to reduce the number of calls needed.
  * @param location 
@@ -95,6 +100,7 @@ const getFiveDayForecastCached = async (location: Location) => {
 }
 
 /**
+ * Fetch five day weatherdata from the weather api.
  * https://openweathermap.org/forecast5
  * @param location 
  * @returns 

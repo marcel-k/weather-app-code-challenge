@@ -19,10 +19,13 @@ export interface ChartData {
 const margin = { left: 40, top: 10, right: 10, bottom: 40 };
 
 /**
- * 
+ * Function that generates an SVG chart based on data.
+ * Call the chart function to get an initialized and update function.
+ * Call the initialize function to set up the chart 
+ * and call update to (re-)supply it with data.
  * @param {string} rootElementId Id of the charts parent element 
- * @param {*} data 
- * @returns 
+ * @param width
+ * @param height
  */
 export function Chart(parentElementId: string, width: number, height: number) {
   let svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;

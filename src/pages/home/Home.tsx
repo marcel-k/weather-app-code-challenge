@@ -1,9 +1,9 @@
-import React, { FC, useRef } from "react";
+import React, { FC, useRef } from 'react';
 
-import { DayCard, TemperatureCard } from "../../features";
-import ErrorBoundary from "../ErrorBoundary";
-import * as PS from "../PageStyle";
-import * as HS from "./HomeStyle";
+import { DayCard, TemperatureCard } from '../../features';
+import ErrorBoundary from '../ErrorBoundary';
+import * as PS from '../PageStyle';
+import * as HS from './HomeStyle';
 
 interface HomeProps {
 

@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
-import * as S from "./AppNavigationStyle";
+import * as S from './AppNavigationStyle';
 
 
 interface AppNavigationProps {
@@ -15,14 +15,19 @@ interface AppNavigationProps {
   onCloseClick: () => void;
 }
 
+/**
+ * Simple component that display the main navigation sidebar.
+ * Open state is controlled with the open property and onCloseClick event.
+ * @param props 
+ * @returns 
+ */
 export const AppNavigation: FC<AppNavigationProps> = (props) => {
   const { open = false, onCloseClick } = props;
 
-
   return (
     <S.Nav open={open}>
-      <S.NavCloseButton iconName="close" onClick={onCloseClick} />
-      <S.NavList role='navigation'>
+      <S.NavCloseButton iconName={"close"} onClick={onCloseClick} />
+      <S.NavList role={'navigation'}>
         <S.NavListItem>
           <S.NavLink to={'/'}>Home</S.NavLink>
         </S.NavListItem>

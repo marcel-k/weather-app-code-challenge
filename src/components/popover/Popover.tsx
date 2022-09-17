@@ -1,8 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
+
 import * as S from './PopoverStyle';
 
 export interface PopoverProps {
   /**
+   * popover visible or not
    * @default false
    */
   open?: boolean;
@@ -12,11 +14,17 @@ export interface PopoverProps {
    */
   onClose?: () => void;
   /**
-   * 
+   * The content of the popover
    */
   children?: React.ReactNode;
 }
 
+/**
+ * Simple popover component with backdrop.
+ * Will be removed from the DOM when open === false.
+ * @param props 
+ * @returns 
+ */
 export const Popover: FC<PopoverProps> = (props) => {
   const { open = false, onClose = () => { }, children } = props;
 

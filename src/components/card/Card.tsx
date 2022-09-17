@@ -1,4 +1,5 @@
 import React from 'react';
+
 import * as S from './CardStyle';
 
 export interface CardProps extends S.CardProps {
@@ -16,6 +17,9 @@ export interface CardProps extends S.CardProps {
   children?: React.ReactNode;
 }
 
+/**
+ * Simple card component
+ */
 export const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
   const { children } = props;
 

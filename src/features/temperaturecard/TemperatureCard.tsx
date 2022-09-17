@@ -1,8 +1,8 @@
-import React, { FC, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { FC, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-import { Card, CardProps, Chart, ChartData } from "../../components";
-import { LocationContext } from "../../context";
-import { getThreeDayForecast, WeatherData } from "../../services";
+import { Card, CardProps, Chart, ChartData } from '../../components';
+import { LocationContext } from '../../context';
+import { getThreeDayForecast, WeatherData } from '../../services';
 import * as S from './TemperateCardStyle';
 
 interface TemperatureCardProps extends CardProps {
@@ -12,6 +12,11 @@ interface TemperatureCardProps extends CardProps {
   children?: never;
 }
 
+/**
+ * Map the api data to a format that is suitable for the chart
+ * @param data 
+ * @returns 
+ */
 const formatData = (data: WeatherData[]) => {
   const formattedData = data.reduce((previous, weatherItem) => {
     const { date, humidity, temperature } = weatherItem;
@@ -25,6 +30,12 @@ const formatData = (data: WeatherData[]) => {
   return formattedData;
 };
 
+/**
+ * Complex card component that displays the temperature and humidity of the next 3 days in a chart.
+ * 
+ * @param props 
+ * @returns 
+ */
 export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
   const { ...cardProps } = props;
 

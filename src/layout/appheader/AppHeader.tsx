@@ -1,6 +1,7 @@
 import React, { FC, useContext } from 'react';
-import { IconButton } from "../../components";
-import { LocationContext } from "../../context";
+
+import { IconButton } from '../../components';
+import { LocationContext } from '../../context';
 import * as S from './AppHeaderStyle';
 import { Toolbar } from './toolbar/Toolbar';
 
@@ -11,6 +12,12 @@ interface AppHeaderProps {
   onOpenNavClick?: () => void;
 }
 
+/**
+ * Complex component that displays the app header bar
+ * and controls the opening of the main navigation.
+ * @param props 
+ * @returns 
+ */
 export const AppHeader: FC<AppHeaderProps> = (props) => {
   const { onOpenNavClick = () => { } } = props;
 

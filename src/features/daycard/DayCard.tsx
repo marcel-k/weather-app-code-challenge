@@ -1,12 +1,14 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
+
 import { Card, CardProps, Icon } from '../../components';
-import * as S from './DayCardStyle';
+import { LocationContext } from '../../context/locationContext';
 import {
   getCurrentWeather,
+  getWeatherForecastByDay,
   WeatherData,
-  getWeatherForecastByDay, weatherMainToIconNameMapping
+  weatherMainToIconNameMapping,
 } from '../../services/';
-import { LocationContext } from '../../context/locationContext';
+import * as S from './DayCardStyle';
 
 interface DayCardProps extends CardProps {
   /**
@@ -34,6 +36,12 @@ interface DayCardProps extends CardProps {
   children?: never;
 }
 
+/**
+ * Complex card component that displays the weather of a given day.
+ * Uses the weather api to fetch data and has to display modes depending on forecast prop.
+ * @param props 
+ * @returns 
+ */
 export const DayCard: FC<DayCardProps> = (props) => {
   const [dataset, setDataset] = useState<WeatherData>();
   const { location } = useContext(LocationContext);

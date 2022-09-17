@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 import * as S from './IconStyle';
 
 interface IconProps extends S.IconProps {
@@ -15,6 +16,11 @@ interface IconProps extends S.IconProps {
 
 export type IconName = string;
 
+/**
+ * Simple icon component
+ * @param props
+ * @returns 
+ */
 export const Icon: FC<IconProps> = (props) => {
   const {
     name,
