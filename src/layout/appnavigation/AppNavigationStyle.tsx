@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { IconButton } from "../../components";
+import { Link } from "react-router-dom";
 
 interface NavProps {
   /**
@@ -28,11 +29,27 @@ export const NavCloseButton = styled(IconButton)`
     margin-top: 2rem;
 `;
 
-export const NavList = styled.ul``;
+export const NavList = styled.ul`
+padding-top: 7rem;
+`;
 
-export const NavListItem = styled.li``;
+export const NavListItem = styled.li`
+  min-height: 3rem;
+  padding: 1rem 2rem;
+  border-top: 1px solid #ccc;
 
-export const NavLink = styled.a`
-  
+  &:last-child {
+    border-bottom: 1px solid #ccc;
+  }
+`;
+
+export const NavLink = styled(Link)`
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
