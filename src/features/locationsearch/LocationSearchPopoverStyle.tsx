@@ -34,3 +34,8 @@ export const OkButton = styled(Button)`
   padding-left: 1rem;
   padding-right: 1rem;
 `;
+
+export const ErrorMessage = styled.p`
+  color: red;
+  font-size: 0.75rem;
+`;

@@ -45,7 +45,7 @@ export async function getWeatherForecastByDay(location: Location, daysInTheFutur
 
     let forecast = fiveDayForecast.find((item) => item.date.getTime() === timeValue);
 
-    if(!forecast && daysInTheFuture === maxDaysForecast) {
+    if (!forecast && daysInTheFuture === maxDaysForecast) {
       forecast = fiveDayForecast[fiveDayForecast.length - 1];
     }
 
@@ -60,7 +60,7 @@ export async function getWeatherForecastByDay(location: Location, daysInTheFutur
  * @param location 
  */
 export async function getFiveDayForecast(location: Location) {
-    return await getFiveDayForecastCached(location);
+  return await getFiveDayForecastCached(location);
 }
 
 /**
@@ -89,14 +89,24 @@ const getFiveDayForecastCached = async (location: Location) => {
   }
 
   const promise = new Promise<WeatherData[]>(async (resolve, reject) => {
-    const result = await fetchWeatherData(location);
+    let result: { list: WeatherApiResponse[] } | undefined = undefined;
 
-    const data = mapApiResultToWeatherData(result);
+    try {
+      result = await fetchWeatherData(location);
+    } catch (e) {
+      delete fiveDayForecastCache[`${location.cityName},${location.countryCode}`];
+      reject(e);
+    }
 
-    resolve(data);
+    if (!!result) {
+      const data = mapApiResultToWeatherData(result);
+
+      resolve(data);
+    }
   });
+
   fiveDayForecastCache[`${location.cityName},${location.countryCode}`] = promise;
-  return await promise;
+  return promise;
 }
 
 /**
@@ -119,11 +129,15 @@ const fetchWeatherData = async (location: Location) => {
     if (response.ok) {
       result = await response.json();
     } else {
-      throw new Error(response.statusText);
+      if (response.status === 404) {
+        return Promise.reject(`No weather data found for ${location.cityName},${location.countryCode}`);
+      } else {
+        return Promise.reject(response.statusText);
+      }
     }
   } catch (e) {
     console.log(e);
-    throw new Error('Error fetching current weather data, try reloading the page');
+    return Promise.reject(`No weather data found for ${location.cityName},${location.countryCode}`);
   }
 
   return result;

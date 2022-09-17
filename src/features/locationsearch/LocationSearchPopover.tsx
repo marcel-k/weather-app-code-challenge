@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, MouseEvent, useContext, useState } from 'react'
 
 import { Popover, PopoverProps } from '../../components';
 import { LocationContext } from '../../context';
-import { CountryCode } from '../../services';
+import { CountryCode, getFiveDayForecast } from '../../services';
 import * as S from './LocationSearchPopoverStyle';
 
 interface LocationSearchPopoverProps extends PopoverProps {
@@ -21,12 +21,21 @@ export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => 
   // Note: formState properties are intentionally lower case
   const [formState, setFormState] = useState({ cityname: '', countrycode: '' as CountryCode });
   const { changeLocation } = useContext(LocationContext);
+  const [error, setError] = useState<string>();
 
-  const handleOkClick = (e: MouseEvent) => {
+  const handleOkClick = async (e: MouseEvent) => {
     if (!!formState.cityname && !!formState.countrycode) {
       e.preventDefault();
-      changeLocation({ cityName: formState.cityname, countryCode: formState.countrycode });
-      onClose();
+
+      try{
+        // temporary solution to catch non-existing locations
+        await getFiveDayForecast({ cityName: formState.cityname, countryCode: formState.countrycode });
+
+        changeLocation({ cityName: formState.cityname, countryCode: formState.countrycode });
+        onClose();
+      } catch(e) {
+        setError(e as string);
+      }
     }
   };
 
@@ -58,6 +67,11 @@ export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => 
             onChange={(e) => handleInputChange(e, 'countrycode')}
           />
         </S.Fieldset>
+        {!!error &&
+          <S.ErrorMessage>
+            {error}
+          </S.ErrorMessage>
+        }
         <S.OkButton type={'submit'} onClick={handleOkClick}>OK</S.OkButton>
       </S.InputForm>
     </Popover>
