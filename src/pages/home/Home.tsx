@@ -22,8 +22,8 @@ export const Home: FC<HomeProps> = (props) => {
           />
           <TemperatureCard 
             height={'19rem'}
-            endDate={new Date()}
-            startDate={new Date()}
+
+            
             backgroundColor={'#3addb1'}
             id={'card-temperature-and-humidity'}
           />

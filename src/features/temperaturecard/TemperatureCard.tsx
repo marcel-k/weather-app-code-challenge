@@ -7,14 +7,6 @@ import * as S from './TemperateCardStyle';
 
 interface TemperatureCardProps extends CardProps {
   /**
-   * The local date/hour at which the chart should start
-   */
-  startDate: Date;
-  /**
-  * The local date/hour at which the chart should end
-  */
-  endDate: Date;
-  /**
    * No children allowed
    */
   children?: never;
@@ -34,7 +26,7 @@ const formatData = (data: WeatherData[]) => {
 };
 
 export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
-  const { startDate, endDate, ...cardProps } = props;
+  const { ...cardProps } = props;
 
   const { location } = useContext(LocationContext);
   const [dataset, setDataset] = useState<ChartData>();
