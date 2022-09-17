@@ -11,9 +11,10 @@ interface NavProps {
 export const Nav = styled.nav<NavProps>`
   top: 0;
   left:0;
+  z-index: 3;
   height: 100%;
   width: 12.5rem;
-  position: absolute;
+  position: fixed;
   transition: transform 0.3s linear;
   transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-14rem)'};
 

@@ -64,8 +64,8 @@ const App = () => {
       <S.Typography />
       <LocationContext.Provider value={locationContextValue}>
         <AppHeader onOpenNavClick={toggleNavOpen} />
-        <AppNavigation open={navOpen} onCloseClick={toggleNavOpen} />
         <Outlet />
+        <AppNavigation open={navOpen} onCloseClick={toggleNavOpen} />
         <LocationSearchPopOver open={locationContextValue.popoverOpen} onClose={handleClosePopover} />
       </LocationContext.Provider>
     </S.App>

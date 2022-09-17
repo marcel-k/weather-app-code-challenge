@@ -2,5 +2,6 @@
 import styled from 'styled-components'
 
 export const Page = styled.main`
- padding-top: 2.5rem;
+  z-index: 1;
+  padding-top: 2.5rem;
 `;
