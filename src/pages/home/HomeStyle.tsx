@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { IconButton } from "../../components";
 
 export const Home = styled.div`
 
@@ -22,6 +23,7 @@ export const Grid = styled.div`
 `;
 
 export const CardScroller = styled.div`
+  position: relative;
   grid-column-start: 1;
 
   @media only screen and (min-width: 600px) { 
@@ -48,5 +50,17 @@ export const CardScrollerContent = styled.div`
   > div {
     flex: 0 0 9.25rem;
   }
+`;
+
+export const CardScrollerLeft = styled(IconButton)`
+  position: absolute;
+  left: -1rem;
+  top: 5rem;
+`;
+
+export const CardScrollerRight = styled(IconButton)`
+  position: absolute;
+  right: -1rem;
+  top: 5rem;
 `;
 
