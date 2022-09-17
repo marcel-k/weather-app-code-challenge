@@ -18,7 +18,6 @@ export const Home: FC<HomeProps> = (props) => {
             forecast={false}
             id={'card-weather-today'}
             backgroundColor={'#6452ef'}
-            location={{ cityName: 'Groningen', countryCode: 'NL' }}
             backgroundImageUrl={'assets/images/card_background-374-314.png'}
           />
           <TemperatureCard 
@@ -45,7 +44,6 @@ export const Home: FC<HomeProps> = (props) => {
                       daysInTheFuture={index + 1}
                       id={`card-weather-forecast-${index + 1}`}
                       key={`card-weather-forecast-${index + 1}`}
-                      location={{ cityName: 'Groningen', countryCode: 'NL' }}
                     />
                   )}
             </HS.CardScrollerContent>

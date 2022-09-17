@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useContext, useEffect, useState } from 'react';
 import { Card, CardProps, Icon } from '../../components';
 import * as S from './DayCardStyle';
 import {
@@ -6,6 +6,7 @@ import {
   WeatherData, Location,
   getWeatherForecastByDay, weatherMainToIconNameMapping
 } from '../../services/';
+import { LocationContext } from '../../context/locationContext';
 
 interface DayCardProps extends CardProps {
   /**
@@ -15,10 +16,6 @@ interface DayCardProps extends CardProps {
    * @default 0
    */
   daysInTheFuture?: number;
-  /**
-   * the location / city which the card should display the weather of
-   */
-  location: Location;
   /**
    * If the card is a forecast tile,
    * displaying a min and max temperature and the day name
@@ -39,19 +36,22 @@ interface DayCardProps extends CardProps {
 
 export const DayCard: FC<DayCardProps> = (props) => {
   const [dataset, setDataset] = useState<WeatherData>();
-  const { location, forecast = true, daysInTheFuture = 0, placeholder = false, ...cardProps } = props;
+  const { location } = useContext(LocationContext);
+  const { forecast = true, daysInTheFuture = 0, placeholder = false, ...cardProps } = props;
 
   useEffect(() => {
     const getData = async () => {
-      let weather: WeatherData;
-      if (!forecast) {
-        weather = await getCurrentWeather(location);
-      } else {
+      if (!!location) {
+        let weather: WeatherData;
+        if (!forecast) {
+          weather = await getCurrentWeather(location);
+        } else {
 
-        weather = await getWeatherForecastByDay(location, daysInTheFuture);
+          weather = await getWeatherForecastByDay(location, daysInTheFuture);
+        }
+
+        setDataset(weather);
       }
-
-      setDataset(weather);
     }
 
     if (!placeholder) {
