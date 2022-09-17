@@ -52,17 +52,12 @@ export async function getWeatherForecastByDay(location: Location, daysInTheFutur
  * Fetches a five day weather forecast, divided by into sections of three hours
  * Because of max call limitations of the weather api,
  * this function uses a local cache per city to reduce the number of calls needed.
+ * @param location 
  */
 export async function getFiveDayForecast(location: Location) {
-  if (environment !== 'production') {
     return await getFiveDayForecastCached(location);
-  } else {
-    const result = await fetchWeatherData(location);
+}
 
-    const data = mapApiResultToWeatherData(result);
-
-    return data;
-  }
 /**
  * Fetches a three day weather forecast, divided by into sections of three hours
  * @param location 
