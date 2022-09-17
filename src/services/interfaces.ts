@@ -270,3 +270,11 @@ export interface WeatherApiResponse {
   cod: number;
   dt_txt?: string;
 }
+
+export interface ReverseGeoLocationApiResponse {
+  lat: number;
+  lon: number;
+  name: string;
+  state: string;
+  country: CountryCode;
+}
