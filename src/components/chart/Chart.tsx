@@ -148,8 +148,11 @@ export function Chart(parentElementId: string, width: number, height: number) {
       .duration(300)
       .attr("d", temperatureLineGenerator);
 
+    const yDomainStart = yScale.domain()[0];
+    const yDomainEnd = yScale.domain()[1];
+    const yRange = yScale.range()[0] - yScale.range()[1];
     const yAxisGenerator = axisLeft(yScale)
-      .tickValues(yScale.domain())
+      .tickValues([yDomainStart, yScale.invert(yRange / 2),  yDomainEnd])
       .tickFormat((tick) => `${tick}°`);
 
     yAxis
