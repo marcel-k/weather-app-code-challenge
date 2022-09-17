@@ -3,7 +3,7 @@ import { Card, CardProps, Icon } from '../../components';
 import * as S from './DayCardStyle';
 import {
   getCurrentWeather,
-  WeatherData, Location,
+  WeatherData,
   getWeatherForecastByDay, weatherMainToIconNameMapping
 } from '../../services/';
 import { LocationContext } from '../../context/locationContext';
@@ -81,16 +81,20 @@ export const DayCard: FC<DayCardProps> = (props) => {
             </S.TemperatureMinMaxWrapper>
           </>
         }
-        {!forecast && !!dataset &&
+        {!forecast &&
           <>
-            <S.SectionWrapper>
-              <S.Temperature size='large' aria-label='temperature'>{dataset?.temperature}°</S.Temperature>
-              <S.WeatherDescription>{dataset?.description}</S.WeatherDescription>
-            </S.SectionWrapper>
-            <S.SectionWrapper>
-              <S.Title size={'larger'}>Humidity</S.Title>
-              <S.Temperature size="small" transparent>{dataset?.humidity}°</S.Temperature>
-            </S.SectionWrapper>
+            {!!dataset &&
+              <>
+                <S.SectionWrapper>
+                  <S.Temperature size='large' aria-label='temperature'>{dataset?.temperature}°</S.Temperature>
+                  <S.WeatherDescription>{dataset?.description}</S.WeatherDescription>
+                </S.SectionWrapper>
+                <S.SectionWrapper>
+                  <S.Title size={'larger'}>Humidity</S.Title>
+                  <S.Temperature size="small" transparent>{dataset?.humidity}°</S.Temperature>
+                </S.SectionWrapper>
+              </>
+            }
             <S.BrandImage src="assets/images/day.svg" />
           </>
         }

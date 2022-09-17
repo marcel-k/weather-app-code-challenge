@@ -2,7 +2,7 @@ import React, { FC, useContext, useEffect, useLayoutEffect, useRef, useState } f
 
 import { Card, CardProps, Chart, ChartData } from "../../components";
 import { LocationContext } from "../../context";
-import { getThreeDayForecast, Location, WeatherData } from "../../services";
+import { getThreeDayForecast, WeatherData } from "../../services";
 import * as S from './TemperateCardStyle';
 
 interface TemperatureCardProps extends CardProps {
@@ -43,7 +43,7 @@ export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
 
   useLayoutEffect(() => {
     const observer = new ResizeObserver(entries => {
-      // Only care about the first element, we expect one element ot be watched
+      // Only care about the first element, we expect one element to be watched
       const { width, height } = entries[0].contentRect;
 
       if (!chartRef.current) {
