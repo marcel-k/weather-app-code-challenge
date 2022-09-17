@@ -21,6 +21,12 @@ export interface CardProps {
    * the background color. image is positioned center bottom no repeat.
    */
   backgroundImageUrl?: string;
+  /**
+   * if the card looks elevated / 3d or not
+   * will add a dropshadow
+   * @default true
+   */
+  elevated?: boolean;
 }
 
 export const Card = styled.div<CardProps>`
@@ -30,5 +36,6 @@ export const Card = styled.div<CardProps>`
   border-radius: 2.5rem;
   width: ${({ width }) => width || '100%'};
   height: ${({ height }) => height || '100%'};
+  box-shadow: ${({ elevated = true }) => elevated ? 'rgba(0, 0, 0, 0.45) 0px 25px 20px -20px' : ''};
   background: ${({ backgroundImageUrl, backgroundColor }) => `${!!backgroundImageUrl ? `url(${backgroundImageUrl}) no-repeat bottom center,` : ''}${backgroundColor || '#6452ef'}`} 
 `

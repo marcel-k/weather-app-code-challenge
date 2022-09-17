@@ -16,14 +16,14 @@ export const Home: FC<HomeProps> = (props) => {
           <DayCard
             height={'19rem'}
             forecast={false}
+            elevated={false}
             id={'card-weather-today'}
             backgroundColor={'#6452ef'}
             backgroundImageUrl={'assets/images/card_background-374-314.png'}
           />
           <TemperatureCard 
             height={'19rem'}
-
-            
+            elevated={false}
             backgroundColor={'#3addb1'}
             id={'card-temperature-and-humidity'}
           />
