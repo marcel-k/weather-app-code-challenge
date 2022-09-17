@@ -166,7 +166,56 @@ export function Chart(parentElementId: string, width: number, height: number) {
       .attr('opacity', 0.5)
       .attr('fill', '#fff')
       .attr('font-size', '1rem')
-      .attr('font-weight', '700')
+      .attr('font-weight', '700');
+
+    //legend
+    const legend = content.append('g').attr('transform', `translate(0, ${contentHeight + 16})`);
+    const legendTemperature = legend.append('g').attr('transform', `translate(0, 4)`);
+    const legendHumidity = legend.append('g').attr('transform', `translate(124)`);
+
+    legendTemperature.append('line')
+    .attr('x1', 0)
+    .attr('x2', 16)
+    .attr('y1', 8)
+    .attr('y2', 8)
+    .attr("fill", "none")
+    .attr("stroke", "#fff")
+    .attr("stroke-opacity", "1")
+    .attr("stroke-width", '0.5rem')
+    .attr("stroke-linecap", "round")
+    .attr("id", "legend-temperature");
+
+    legendTemperature.append('text')
+    .attr('y', 8)
+    .attr('x', 24)
+    .text('Temperature')
+    .attr('opacity', 0.5)
+    .attr('fill', '#fff')
+    .attr('font-size', '1rem')
+    .attr('font-weight', '700')
+    .attr('dominant-baseline', 'middle');
+
+    legendHumidity.append('line')
+    .attr('x1', 8)
+    .attr('x2', 8)
+    .attr('y1', 0)
+    .attr('y2', 16)
+    .attr("fill", "none")
+    .attr("stroke", "#fff")
+    .attr("stroke-opacity", "0.5")
+    .attr("stroke-width", '0.5rem')
+    .attr("stroke-linecap", "round")
+    .attr("id", "legend-humidity");
+
+    legendHumidity.append('text')
+    .attr('y', 12)
+    .attr('x', 16)
+    .text('Humidity')
+    .attr('opacity', 0.5)
+    .attr('fill', '#fff')
+    .attr('font-size', '1rem')
+    .attr('font-weight', '700')
+    .attr('dominant-baseline', 'middle');
   }
 
   return {
