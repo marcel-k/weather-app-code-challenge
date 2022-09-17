@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IconButton } from "../../../components";
+import { IconButton } from '../../../components';
 
 export const Toolbar = styled.div`
   gap: 0.75rem;

@@ -99,11 +99,11 @@ export const DayCard: FC<DayCardProps> = (props) => {
                 </S.SectionWrapper>
                 <S.SectionWrapper>
                   <S.Title size={'larger'}>Humidity</S.Title>
-                  <S.Temperature size="small" transparent>{dataset?.humidity}°</S.Temperature>
+              <S.Temperature size='small' transparent>{dataset?.humidity}°</S.Temperature>
                 </S.SectionWrapper>
               </>
             }
-            <S.BrandImage src="assets/images/day.svg" />
+          <S.BrandImage src='assets/images/day.svg' />
           </>
         }
       </S.DayCardContent>

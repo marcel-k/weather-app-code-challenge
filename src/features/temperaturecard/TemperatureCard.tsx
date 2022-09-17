@@ -50,7 +50,7 @@ export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
       const { width, height } = entries[0].contentRect;
 
       if (!chartRef.current) {
-        const { initialize, update } = Chart("chart-goes-here", width, height);
+        const { initialize, update } = Chart('chart-goes-here', width, height);
 
         initialize();
         chartRef.current = { update };

@@ -18,12 +18,12 @@ export const Toolbar: FC<ToolbarProps> = (_props) => {
   return (
     <S.Toolbar role={'toolbar'}>
       <IconButton
-        iconName={"dark_mode"}
+        iconName={'dark_mode'}
         title={'Sadly, dark mode has not been implemented yet!'}
         onClick={() => { alert('Sadly, dark mode has not been implemented yet!') }}
       />
       <S.AnimatedButton
-        iconName={"search"}
+        iconName={'search'}
         onClick={openPopover}
         animate={!location && !popoverOpen}
       />

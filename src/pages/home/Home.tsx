@@ -58,8 +58,8 @@ export const Home: FC<HomeProps> = (_props) => {
                       />
                     )}
               </HS.CardScrollerContent>
-              <HS.CardScrollerLeft iconName={"navigate_before"} onClick={scrollLeft} ></HS.CardScrollerLeft>
-              <HS.CardScrollerRight iconName={"navigate_next"} onClick={scrollRight}></HS.CardScrollerRight>
+              <HS.CardScrollerLeft iconName={'navigate_before'} onClick={scrollLeft} ></HS.CardScrollerLeft>
+              <HS.CardScrollerRight iconName={'navigate_next'} onClick={scrollRight}></HS.CardScrollerRight>
             </HS.CardScroller>
           </HS.Grid>
     </ErrorBoundary>

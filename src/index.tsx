@@ -7,7 +7,7 @@ import { About, Home } from './pages';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
       {
@@ -19,8 +19,8 @@ const router = createBrowserRouter([
         element: <About />
       },
       {
-        path: "*",
-        element: <Navigate to="/" replace />
+        path: '*',
+        element: <Navigate to='/' replace />
       }
     ]
   }

@@ -190,11 +190,11 @@ export const About: FC<AboutProps> = (props) => {
       <S.Section>
         <strong>Links:</strong>
         <ul>
-          <li><a href="https://withblue.ink/2020/06/07/isthisadependencyordevdependency.html"> https://withblue.ink/2020/06/07/isthisadependencyordevdependency.html</a></li>
-          <li><a href="https://blog.webdevsimplified.com/202207/reactfolderstructure/"> https://blog.webdevsimplified.com/202207/reactfolderstructure/</a></li>
-          <li><a href="https://khalilstemmler.com/blogs/typescript/eslintfortypescript/"> https://khalilstemmler.com/blogs/typescript/eslintfortypescript/</a></li>
-          <li><a href="https://blog.logrocket.com/usingbarrelexportsorganizereactcomponents/"> https://blog.logrocket.com/usingbarrelexportsorganizereactcomponents/</a></li>
-          <li><a href="https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Outlined"> https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Outlined</a></li>
+          <li><a href='https://withblue.ink/2020/06/07/isthisadependencyordevdependency.html'> https://withblue.ink/2020/06/07/isthisadependencyordevdependency.html</a></li>
+          <li><a href='https://blog.webdevsimplified.com/202207/reactfolderstructure/'> https://blog.webdevsimplified.com/202207/reactfolderstructure/</a></li>
+          <li><a href='https://khalilstemmler.com/blogs/typescript/eslintfortypescript/'> https://khalilstemmler.com/blogs/typescript/eslintfortypescript/</a></li>
+          <li><a href='https://blog.logrocket.com/usingbarrelexportsorganizereactcomponents/'> https://blog.logrocket.com/usingbarrelexportsorganizereactcomponents/</a></li>
+          <li><a href='https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Outlined'> https://fonts.google.com/icons?icon.set=Material+Icons&icon.style=Outlined</a></li>
         </ul>
       </S.Section>
     </PS.Page>

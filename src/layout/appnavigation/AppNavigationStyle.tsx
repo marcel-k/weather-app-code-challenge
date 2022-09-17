@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { IconButton } from "../../components";
-import { Link } from "react-router-dom";
+import { IconButton } from '../../components';
+import { Link } from 'react-router-dom';
 
 interface NavProps {
   /**

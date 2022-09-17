@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Button } from "../../components";
+import { Button } from '../../components';
 
 export const InputForm = styled.form`
   display: flex;
@@ -17,7 +17,7 @@ export const Fieldset = styled.fieldset`
 
 export const InputLabel = styled.label`
    &:after {
-    content:" *";
+    content:' *';
     color: red;
   }
 `;

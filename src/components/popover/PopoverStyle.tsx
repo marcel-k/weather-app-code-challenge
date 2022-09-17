@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { IconButton } from "../iconbutton/IconButton";
+import { IconButton } from '../iconbutton/IconButton';
 
 export const Popover = styled.dialog`
   top: 9rem;

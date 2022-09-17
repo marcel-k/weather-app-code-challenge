@@ -1,10 +1,10 @@
-import "d3-transition";
+import 'd3-transition';
 
-import { max, min } from "d3-array";
-import { axisLeft } from "d3-axis";
-import { scaleBand, scaleLinear } from "d3-scale";
-import { select } from "d3-selection";
-import { curveNatural, line } from "d3-shape";
+import { max, min } from 'd3-array';
+import { axisLeft } from 'd3-axis';
+import { scaleBand, scaleLinear } from 'd3-scale';
+import { select } from 'd3-selection';
+import { curveNatural, line } from 'd3-shape';
 
 export interface DataItem {
   label: string;
@@ -39,33 +39,33 @@ export function Chart(parentElementId: string, width: number, height: number) {
     const contentHeight = height - margin.top - margin.bottom;
 
     svg = select(`#${parentElementId}`)
-      .append("svg")
-      .attr("class", "chart")
-      .attr("width", width)
-      .attr("height", height);
+      .append('svg')
+      .attr('class', 'chart')
+      .attr('width', width)
+      .attr('height', height);
 
     // define a container g element that holds the chart parts
     // and transforms them all at once based on margin values
-    container = svg.append("g")
-      .attr("class", "container")
-      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+    container = svg.append('g')
+      .attr('class', 'container')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     // define xAxis g container element,
     // append it to the svg,
     // and put at the bottom of the svg with transform
-    xAxis = container.append("g")
-      .attr("class", "xAxis")
-      .attr("transform", `translate(0, ${contentHeight})`);
+    xAxis = container.append('g')
+      .attr('class', 'xAxis')
+      .attr('transform', `translate(0, ${contentHeight})`);
 
     // define yAxis g container element,
     // append it to the svg
-    yAxis = container.append("g")
-      .attr("class", "yAxis");
+    yAxis = container.append('g')
+      .attr('class', 'yAxis');
 
     // define a g element that holds the content / bars / lines,
     // append it to the svg
-    content = container.append("g")
-      .attr("class", "content");
+    content = container.append('g')
+      .attr('class', 'content');
   }
 
   const update = function (data: ChartData, width: number, height: number) {
@@ -76,7 +76,7 @@ export function Chart(parentElementId: string, width: number, height: number) {
 
     // update svg dimensions
     svg.attr('height', height).attr('width', width);
-    xAxis.attr("transform", `translate(0, ${contentHeight})`)
+    xAxis.attr('transform', `translate(0, ${contentHeight})`)
 
     // isolate the values that we use to calculate and draw the chart
     const dataValues = humidity.concat(temperature).map((d) => d.value);
@@ -101,7 +101,7 @@ export function Chart(parentElementId: string, width: number, height: number) {
 
     // select all (non-)existing rect elements
     // and bind our (new) data to the selection
-    const rectSelection = content?.selectAll("rect").data(humidity);
+    const rectSelection = content?.selectAll('rect').data(humidity);
 
     
     // set the x, y, height, width and fill of each rect
@@ -111,21 +111,21 @@ export function Chart(parentElementId: string, width: number, height: number) {
       .join((enter) =>
       // define any missing rect elements (data.length) with enter and append them to the DOM
         enter.append('rect')
-          .attr("height", 0)
+          .attr('height', 0)
           .attr('rx', '0.75rem')
-          .attr("fill", "#fff")
-          .attr("opacity", "0.3")
-          .attr("y", (_d) => yScale(0))
-          .attr("width", xScale.bandwidth())
-          .attr("x", (d) => xScale(d.label) as number)
+          .attr('fill', '#fff')
+          .attr('opacity', '0.3')
+          .attr('y', (_d) => yScale(0))
+          .attr('width', xScale.bandwidth())
+          .attr('x', (d) => xScale(d.label) as number)
       )
       .transition()
       .delay(100)
       .duration(300)
-      .attr("y", (d) => yScale(d.value))
-      .attr("width", xScale.bandwidth())
-      .attr("x", (d) => xScale(d.label) as number)
-      .attr("height", (d) => contentHeight - yScale(d.value));
+      .attr('y', (d) => yScale(d.value))
+      .attr('width', xScale.bandwidth())
+      .attr('x', (d) => xScale(d.label) as number)
+      .attr('height', (d) => contentHeight - yScale(d.value));
 
     const temperatureLineGenerator = line<DataItem>()
       .curve(curveNatural)
@@ -134,22 +134,22 @@ export function Chart(parentElementId: string, width: number, height: number) {
 
     const temperaturePath =
       content
-        .selectAll("path")
+        .selectAll('path')
         .data([temperature]);
 
 
     temperaturePath
       .join('path')
-      .attr("fill", "none")
-      .attr("stroke", "#fff")
-      .attr("stroke-opacity", "1")
-      .attr("stroke-width", '0.5rem')
-      .attr("id", "temperature-line")
-      .attr("stroke-linecap", "round")
+      .attr('fill', 'none')
+      .attr('stroke', '#fff')
+      .attr('stroke-opacity', '1')
+      .attr('stroke-width', '0.5rem')
+      .attr('id', 'temperature-line')
+      .attr('stroke-linecap', 'round')
       .transition()
       .delay(100)
       .duration(300)
-      .attr("d", temperatureLineGenerator);
+      .attr('d', temperatureLineGenerator);
 
     const yDomainStart = yScale.domain()[0];
     const yDomainEnd = yScale.domain()[1];
@@ -181,12 +181,12 @@ export function Chart(parentElementId: string, width: number, height: number) {
     .attr('x2', 16)
     .attr('y1', 8)
     .attr('y2', 8)
-    .attr("fill", "none")
-    .attr("stroke", "#fff")
-    .attr("stroke-opacity", "1")
-    .attr("stroke-width", '0.5rem')
-    .attr("stroke-linecap", "round")
-    .attr("id", "legend-temperature");
+      .attr('fill', 'none')
+      .attr('stroke', '#fff')
+      .attr('stroke-opacity', '1')
+      .attr('stroke-width', '0.5rem')
+      .attr('stroke-linecap', 'round')
+      .attr('id', 'legend-temperature');
 
     legendTemperature.append('text')
     .attr('y', 8)
@@ -203,12 +203,12 @@ export function Chart(parentElementId: string, width: number, height: number) {
     .attr('x2', 8)
     .attr('y1', 0)
     .attr('y2', 16)
-    .attr("fill", "none")
-    .attr("stroke", "#fff")
-    .attr("stroke-opacity", "0.5")
-    .attr("stroke-width", '0.5rem')
-    .attr("stroke-linecap", "round")
-    .attr("id", "legend-humidity");
+      .attr('fill', 'none')
+      .attr('stroke', '#fff')
+      .attr('stroke-opacity', '0.5')
+      .attr('stroke-width', '0.5rem')
+      .attr('stroke-linecap', 'round')
+      .attr('id', 'legend-humidity');
 
     legendHumidity.append('text')
     .attr('y', 12)

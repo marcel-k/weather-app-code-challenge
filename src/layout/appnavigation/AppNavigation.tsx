@@ -26,7 +26,7 @@ export const AppNavigation: FC<AppNavigationProps> = (props) => {
 
   return (
     <S.Nav open={open}>
-      <S.NavCloseButton iconName={"close"} onClick={onCloseClick} />
+      <S.NavCloseButton iconName={'close'} onClick={onCloseClick} />
       <S.NavList role={'navigation'}>
         <S.NavListItem>
           <S.NavLink to={'/'}>Home</S.NavLink>

@@ -1,5 +1,5 @@
-import { createContext } from "react";
-import { Location } from "../services";
+import { createContext } from 'react';
+import { Location } from '../services';
 
 export interface LocationContextValue {
   /**
