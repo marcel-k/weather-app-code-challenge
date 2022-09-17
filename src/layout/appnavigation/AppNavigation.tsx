@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 
 import * as S from './AppNavigationStyle';
+const { urlRoot } = appConfig;
 
 
 interface AppNavigationProps {
@@ -29,10 +30,10 @@ export const AppNavigation: FC<AppNavigationProps> = (props) => {
       <S.NavCloseButton iconName={'close'} onClick={onCloseClick} />
       <S.NavList role={'navigation'}>
         <S.NavListItem>
-          <S.NavLink to={'/'}>Home</S.NavLink>
+          <S.NavLink to={urlRoot}>Home</S.NavLink>
         </S.NavListItem>
         <S.NavListItem>
-          <S.NavLink to={'/about'}>About</S.NavLink>
+          <S.NavLink to={`${urlRoot}about`}>About</S.NavLink>
         </S.NavListItem>
       </S.NavList>
     </S.Nav>
