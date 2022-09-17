@@ -9,8 +9,12 @@ interface ToolbarProps {
 export const Toolbar: FC<ToolbarProps> = (props) => {
   return (
     <S.Toolbar role={'toolbar'}>
-      <IconButton iconName="dark_mode" onClick={() => {}} />
-      <IconButton iconName="search" onClick={() => {}} />
+      <IconButton
+        iconName={"dark_mode"}
+        title={'Sadly, dark mode has not been implemented yet!'}
+        onClick={() => { alert('Sadly, dark mode has not been implemented yet!') }}
+      />
+      <IconButton iconName="search" onClick={() => { }} />
     </S.Toolbar>
   )
 };
