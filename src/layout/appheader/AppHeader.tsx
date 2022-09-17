@@ -24,7 +24,7 @@ export const AppHeader: FC<AppHeaderProps> = (props) => {
         onClick={onOpenNavClick}
         arial-label={'Open main menu'}
       />
-      {!location && <S.Title>No place special</S.Title>}
+      {!location && <S.Title></S.Title>}
       {!!location && <S.Title>{location?.cityName}, {location?.countryCode}</S.Title> }
       <Toolbar />
     </S.Header>
