@@ -28,6 +28,7 @@ tools used:
 - Node.js v16.17.0, npm 8.15.0, Create-React-App, TypeScript
 - React.js, D3.js, react-router-dom, styled-components, testing-library
 - material-ui icon font (CDN), Google Roboto font (CDN)
+- gh-pages to deploy to github pages
 
 
 To run the project in a local development environment:
