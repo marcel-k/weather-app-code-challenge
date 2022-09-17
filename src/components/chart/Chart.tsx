@@ -112,7 +112,8 @@ export function Chart(parentElementId: string, width: number, height: number) {
       // define any missing rect elements (data.length) with enter and append them to the DOM
         enter.append('rect')
           .attr('height', 0)
-          .attr('rx', '0.75rem')
+          // .attr('rx', '0.75rem') // safari houd niet van rem
+          .attr('rx', 12)
           .attr('fill', '#fff')
           .attr('opacity', '0.3')
           .attr('y', (_d) => yScale(0))
