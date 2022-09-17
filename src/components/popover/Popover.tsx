@@ -23,7 +23,7 @@ export const Popover: FC<PopoverProps> = (props) => {
   return (
     <>
       {open &&
-        <S.Backdrop onClick={onClose}>
+        <S.Backdrop>
           <S.Popover open>
             <S.CloseButton iconName="close" onClick={onClose} />
             <S.PopoverContent>
