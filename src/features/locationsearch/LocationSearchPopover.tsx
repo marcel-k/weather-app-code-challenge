@@ -44,7 +44,7 @@ export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => 
           />
         </S.Fieldset>
         <S.Fieldset>
-          <S.InputLabel htmlFor="countrycode">CountryCode</S.InputLabel>
+          <S.InputLabel htmlFor="countrycode">CountryCode (nl, de, uk, se, etc.)</S.InputLabel>
           <S.Input
             required
             type={'search'}
