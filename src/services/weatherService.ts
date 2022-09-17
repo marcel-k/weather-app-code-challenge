@@ -1,5 +1,5 @@
 import { Location, WeatherApiResponse } from './interfaces';
-const { apiKey, weatherApiUrl, environment } = appConfig;
+const { apiKey, weatherApiUrl, maxDaysForecast } = appConfig;
 
 export interface WeatherData {
   date: Date;
@@ -32,10 +32,17 @@ export async function getWeatherForecastByDay(location: Location, daysInTheFutur
     const today = new Date();
     const date = new Date(today);
     date.setDate(today.getDate() + daysInTheFuture);
-    date.setHours(15, 0, 0, 0);
+
+    const hours = date.getHours();
+    const nearestThreeHours = hours - (hours % 3);
+    date.setHours(nearestThreeHours, 0, 0, 0);
     const timeValue = date.getTime();
 
-    const forecast = fiveDayForecast.find((item) => item.date.getTime() === timeValue);
+    let forecast = fiveDayForecast.find((item) => item.date.getTime() === timeValue);
+
+    if(!forecast && daysInTheFuture === maxDaysForecast) {
+      forecast = fiveDayForecast[fiveDayForecast.length - 1];
+    }
 
     return forecast as WeatherData;
   }

@@ -2,6 +2,7 @@ interface AppConfig {
   apiKey: string;
   useMockData: boolean;
   weatherApiUrl: string;
+  maxDaysForecast: number;
   environment: 'development' | 'production';
 }
 
