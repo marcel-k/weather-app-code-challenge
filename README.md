@@ -5,6 +5,9 @@ This code challenge is created for a Ordina code challenge.
 The app has been deployed and is available here: ...
 The app is based on a opensource design: https://www.uplabs.com/posts/weather-app-freebie
 
+The app has been (manually) tested with browsers chrome, safari, brave and chrome on android mobile and tablet
+Mobile devices can 'install' the app on the home screen via browser menu --> 'add to startscreen' or 'add to homescreen' or something like that.
+
 CORS problems have been (automatically) solved by Create-React-App.
 I you do encounter CORS problems, add a proxy property in the package.json the weatherapi.
 further reading: https://create-react-app.dev/docs/proxying-api-requests-in-development/ 
