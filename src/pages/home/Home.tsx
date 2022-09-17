@@ -23,11 +23,11 @@ export const Home: FC<HomeProps> = (props) => {
           />
           <TemperatureCard 
             height={'19rem'}
-            location={'Bedum'}
             endDate={new Date()}
             startDate={new Date()}
             backgroundColor={'#3addb1'}
             id={'card-temperature-and-humidity'}
+            location={{ cityName: 'Yakutsk', countryCode: 'RU' }}
           />
           <HS.CardScroller>
             <HS.CardScrollerTitle>14 Day Weather Forecast</HS.CardScrollerTitle>

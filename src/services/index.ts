@@ -1,4 +1,4 @@
-export { getCurrentWeather, getFiveDayForecast, getWeatherForecastByDay } from './weatherService';
+export { getCurrentWeather, getFiveDayForecast, getThreeDayForecast, getWeatherForecastByDay } from './weatherService';
 export type { WeatherData } from './weatherService';
 
 export type { CountryCode, Location, WeatherApiResponse } from './interfaces';

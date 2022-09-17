@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 
-import { Card, CardProps, Chart } from "../../components";
+import { Card, CardProps, Chart, ChartData } from "../../components";
+import { getThreeDayForecast, Location, WeatherData } from "../../services";
 
 interface TemperatureCardProps extends CardProps {
   /**
@@ -14,7 +15,7 @@ interface TemperatureCardProps extends CardProps {
   /**
     * the location / city which the card should display the weather of
     */
-  location: string;
+  location: Location;
   /**
    * No children allowed
    */
@@ -54,10 +55,23 @@ const d2 = {
   ],
 }
 
+const formatData = (data: WeatherData[]) => {
+  const formattedData = data.reduce((previous, weatherItem) => {
+    const { date, humidity, temperature } = weatherItem;
+    const label = date.toISOString();
+    return {
+      humidity: [...previous.humidity, { label, value: humidity }],
+      temperature: [...previous.temperature, { label, value: temperature }]
+    };
+  }, { humidity: [], temperature: [] } as ChartData);
+
+  return formattedData;
+};
+
 export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
   const { startDate, endDate, location, ...cardProps } = props;
 
-  const [dataset, setDataset] = useState(d);
+  const [dataset, setDataset] = useState<ChartData>();
   const chartRef = useRef<{ update: Function } | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -73,8 +87,10 @@ export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
         chartRef.current = { update };
       }
 
-      // Note: could debounce but not really necessary
-      chartRef.current?.update(dataset, width, height);
+      if (!!dataset) {
+        // Note: could debounce but not really necessary
+        chartRef.current?.update(dataset, width, height);
+      }
     });
 
     observer.observe(cardRef.current as HTMLDivElement);
@@ -86,11 +102,15 @@ export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
 
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => setDataset(d2), 2000);
-    return () => {
-      window.clearTimeout(timeout);
-    };
-  }, []);
+    const getData = async () => {
+      const weather = await getThreeDayForecast(location);
+      const formatted = formatData(weather);
+
+      setDataset(formatted);
+    }
+
+    getData();
+  }, [location]);
 
   return (
     <Card {...cardProps} ref={cardRef}>

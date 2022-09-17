@@ -63,6 +63,15 @@ export async function getFiveDayForecast(location: Location) {
 
     return data;
   }
+/**
+ * Fetches a three day weather forecast, divided by into sections of three hours
+ * @param location 
+ */
+export async function getThreeDayForecast(location: Location) {
+  const fiveDayForecast = await getFiveDayForecastCached(location);
+  const threeDayForecast = fiveDayForecast.slice(0, 24);
+
+  return threeDayForecast;
 }
 
 /**

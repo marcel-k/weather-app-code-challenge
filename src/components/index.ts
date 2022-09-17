@@ -7,3 +7,5 @@ export type { IconName } from './icon/Icon';
 export { IconButton } from './iconbutton/IconButton';
 
 export { Chart } from './chart/Chart';
+
+export type { ChartData } from './chart/Chart';
