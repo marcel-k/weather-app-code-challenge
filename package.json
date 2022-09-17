@@ -1,7 +1,6 @@
 {
   "name": "weather-app",
   "version": "1.0.0",
-  "homepage": "https://marcel-k.github.io/weather-app-code-challenge/",
   "private": false,
   "dependencies": {
     "d3": "^7.6.1",
