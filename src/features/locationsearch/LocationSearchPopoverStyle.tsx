@@ -16,7 +16,10 @@ export const Fieldset = styled.fieldset`
 `;
 
 export const InputLabel = styled.label`
-
+   &:after {
+    content:" *";
+    color: red;
+  }
 `;
 
 export const Input = styled.input`
