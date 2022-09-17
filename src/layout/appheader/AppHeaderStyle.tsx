@@ -10,6 +10,7 @@ export const Header = styled.header`
   align-items: center;
   background-color: #fff;;
   justify-content: space-between;
+  padding: 0 2rem;
 `;
 
 export const Title = styled.h1`
