@@ -30,17 +30,17 @@ export const Home: FC<HomeProps> = (props) => {
             id={'card-temperature-and-humidity'}
           />
           <HS.CardScroller>
-            <HS.CardScrollerTitle>Weather forecast</HS.CardScrollerTitle>
+            <HS.CardScrollerTitle>14 Day Weather Forecast</HS.CardScrollerTitle>
             <HS.CardScrollerContent>
               {
                 [
-                  '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8',
-                  //'#3addb1', '#6452ef',
-                  // '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
+                  '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
+                  '#f82298', '#f9b423', '#219bfa', '#da2221', '#2162f8', '#3addb1', '#6452ef',
                 ]
                   .map((color, index) =>
                     <DayCard
                       height={'13.25rem'}
+                      placeholder={index > 4}
                       backgroundColor={color}
                       daysInTheFuture={index + 1}
                       id={`card-weather-forecast-${index + 1}`}

@@ -1,9 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Card, CardProps, Icon } from '../../components';
 import * as S from './DayCardStyle';
-import { getCurrentWeather, 
-  WeatherData, Location, 
-  getWeatherForecastByDay, weatherMainToIconNameMapping } from '../../services/';
+import {
+  getCurrentWeather,
+  WeatherData, Location,
+  getWeatherForecastByDay, weatherMainToIconNameMapping
+} from '../../services/';
 
 interface DayCardProps extends CardProps {
   /**
@@ -24,6 +26,12 @@ interface DayCardProps extends CardProps {
    */
   forecast?: boolean;
   /**
+   * If the card should only display a placeholder
+   * Card will not fetch data if true
+   * @default false
+   */
+  placeholder?: boolean;
+  /**
    * No children allowed
    */
   children?: never;
@@ -31,7 +39,7 @@ interface DayCardProps extends CardProps {
 
 export const DayCard: FC<DayCardProps> = (props) => {
   const [dataset, setDataset] = useState<WeatherData>();
-  const { location, forecast = true, daysInTheFuture = 0, ...cardProps } = props;
+  const { location, forecast = true, daysInTheFuture = 0, placeholder = false, ...cardProps } = props;
 
   useEffect(() => {
     const getData = async () => {
@@ -46,14 +54,21 @@ export const DayCard: FC<DayCardProps> = (props) => {
       setDataset(weather);
     }
 
-    getData();
-  }, [daysInTheFuture, forecast, location]);
+    if (!placeholder) {
+      getData();
+    }
+  }, [daysInTheFuture, forecast, location, placeholder]);
 
 
   return (
     <Card {...cardProps}>
       <S.DayCardContent forecast={forecast}>
-        {forecast &&
+        {placeholder &&
+          <S.Skeleton>
+            <Icon color={'#fff'} name={'thermostat'} size={'6rem'} />
+          </S.Skeleton>
+        }
+        {forecast && !!dataset &&
           <>
             <S.Title>{dataset?.date.toLocaleDateString('en-EN', { weekday: 'long' })}</S.Title>
             <S.ForecastWeatherIcon>
@@ -66,7 +81,7 @@ export const DayCard: FC<DayCardProps> = (props) => {
             </S.TemperatureMinMaxWrapper>
           </>
         }
-        {!forecast &&
+        {!forecast && !!dataset &&
           <>
             <S.SectionWrapper>
               <S.Temperature size='large' aria-label='temperature'>{dataset?.temperature}°</S.Temperature>
