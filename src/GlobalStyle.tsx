@@ -10,7 +10,7 @@ export const Reset = createGlobalStyle`
 `;
 
 export const App = styled.div`
-  padding: 2rem;
+  padding: 2rem 0;
   max-width: 105rem;
 
   @media only screen and (min-width: 1680px) {
