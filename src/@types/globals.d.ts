@@ -1,5 +1,6 @@
 interface AppConfig {
   apiKey: string;
+  urlRoot: string;
   useMockData: boolean;
   weatherApiUrl: string;
   forecastApiUrl: string;

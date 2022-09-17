@@ -5,9 +5,11 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import App from './App';
 import { About, Home } from './pages';
 
+const { urlRoot } = appConfig;
+
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: urlRoot,
     element: <App />,
     children: [
       {
@@ -20,7 +22,7 @@ const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <Navigate to='/' replace />
+        element: <Navigate to={urlRoot} replace />
       }
     ]
   }
