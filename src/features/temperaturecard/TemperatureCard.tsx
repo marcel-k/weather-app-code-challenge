@@ -1,6 +1,7 @@
-import React, { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { FC, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { Card, CardProps, Chart, ChartData } from "../../components";
+import { LocationContext } from "../../context";
 import { getThreeDayForecast, Location, WeatherData } from "../../services";
 import * as S from './TemperateCardStyle';
 
@@ -13,10 +14,6 @@ interface TemperatureCardProps extends CardProps {
   * The local date/hour at which the chart should end
   */
   endDate: Date;
-  /**
-    * the location / city which the card should display the weather of
-    */
-  location: Location;
   /**
    * No children allowed
    */
@@ -37,8 +34,9 @@ const formatData = (data: WeatherData[]) => {
 };
 
 export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
-  const { startDate, endDate, location, ...cardProps } = props;
+  const { startDate, endDate, ...cardProps } = props;
 
+  const { location } = useContext(LocationContext);
   const [dataset, setDataset] = useState<ChartData>();
   const chartRef = useRef<{ update: Function } | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -71,10 +69,12 @@ export const TemperatureCard: FC<TemperatureCardProps> = (props) => {
 
   useEffect(() => {
     const getData = async () => {
-      const weather = await getThreeDayForecast(location);
-      const formatted = formatData(weather);
+      if (!!location) {
+        const weather = await getThreeDayForecast(location);
+        const formatted = formatData(weather);
 
-      setDataset(formatted);
+        setDataset(formatted);
+      }
     }
 
     getData();

@@ -26,7 +26,6 @@ export const Home: FC<HomeProps> = (props) => {
             startDate={new Date()}
             backgroundColor={'#3addb1'}
             id={'card-temperature-and-humidity'}
-            location={{ cityName: 'Yakutsk', countryCode: 'RU' }}
           />
           <HS.CardScroller>
             <HS.CardScrollerTitle>14 Day Weather Forecast</HS.CardScrollerTitle>
