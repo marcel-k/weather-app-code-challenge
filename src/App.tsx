@@ -1,14 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
+
 import { LocationContext } from "./context";
 import { LocationContextValue } from "./context/locationContext";
 import { LocationSearchPopOver } from "./features";
-
 import * as S from "./GlobalStyle";
 import { useToggle } from "./hooks";
 import { AppHeader, AppNavigation } from "./layout";
 import { Home } from "./pages";
 import { getCurrentLocation, Location } from "./services";
-
 
 
 const App = () => {
@@ -65,7 +65,7 @@ const App = () => {
       <LocationContext.Provider value={locationContextValue}>
         <AppHeader onOpenNavClick={toggleNavOpen} />
         <AppNavigation open={navOpen} onCloseClick={toggleNavOpen} />
-        <Home />
+        <Outlet />
         <LocationSearchPopOver open={locationContextValue.popoverOpen} onClose={handleClosePopover} />
       </LocationContext.Provider>
     </S.App>
