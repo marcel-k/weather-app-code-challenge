@@ -1,5 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { IconButton } from "../../components";
+import { LocationContext } from "../../context";
 import * as S from './AppHeaderStyle';
 import { Toolbar } from './toolbar/Toolbar';
 
@@ -8,14 +9,12 @@ interface AppHeaderProps {
    * fires when nav button is clicked
    */
   onOpenNavClick?: () => void;
-  /**
-   * Header title text
-   */
-  title?: string;
 }
 
 export const AppHeader: FC<AppHeaderProps> = (props) => {
-  const { onOpenNavClick = () => { }, title = 'Groningen, NL' } = props;
+  const { onOpenNavClick = () => { } } = props;
+
+  const { location } = useContext(LocationContext);
 
   return (
     <S.Header>
@@ -25,7 +24,8 @@ export const AppHeader: FC<AppHeaderProps> = (props) => {
         onClick={onOpenNavClick}
         arial-label={'Open main menu'}
       />
-      <S.Title>{title}</S.Title>
+      {!location && <S.Title>No place special</S.Title>}
+      {!!location && <S.Title>{location?.cityName}, {location?.countryCode}</S.Title> }
       <Toolbar />
     </S.Header>
   )

@@ -1,12 +1,14 @@
-import React, { FC } from 'react'
+import React, { FC, useContext } from 'react'
 import { IconButton } from "../../../components";
+import { LocationContext } from "../../../context";
 import * as S from './ToolbarStyle';
 
 interface ToolbarProps {
 
 }
 
-export const Toolbar: FC<ToolbarProps> = (props) => {
+export const Toolbar: FC<ToolbarProps> = (_props) => {
+  const { changeLocation } = useContext(LocationContext);
   return (
     <S.Toolbar role={'toolbar'}>
       <IconButton
@@ -14,7 +16,7 @@ export const Toolbar: FC<ToolbarProps> = (props) => {
         title={'Sadly, dark mode has not been implemented yet!'}
         onClick={() => { alert('Sadly, dark mode has not been implemented yet!') }}
       />
-      <IconButton iconName="search" onClick={() => { }} />
+      <IconButton iconName="search" onClick={() => { changeLocation({ cityName: 'Amsterdam', countryCode: 'NL' }) }} />
     </S.Toolbar>
   )
 };
