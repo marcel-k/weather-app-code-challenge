@@ -2,7 +2,9 @@ interface AppConfig {
   apiKey: string;
   useMockData: boolean;
   weatherApiUrl: string;
+  forecastApiUrl: string;
   maxDaysForecast: number;
+  reverseGeocodingApiUrl: string;
   environment: 'development' | 'production';
 }
 

@@ -1,5 +1,5 @@
 import { Location, WeatherApiResponse } from './interfaces';
-const { apiKey, weatherApiUrl, maxDaysForecast } = appConfig;
+const { apiKey, forecastApiUrl, maxDaysForecast } = appConfig;
 
 export interface WeatherData {
   date: Date;
@@ -99,6 +99,11 @@ const getFiveDayForecastCached = async (location: Location) => {
   return await promise;
 }
 
+/**
+ * https://openweathermap.org/forecast5
+ * @param location 
+ * @returns 
+ */
 const fetchWeatherData = async (location: Location) => {
   const queryString = new URLSearchParams({
     appid: apiKey,
@@ -108,7 +113,7 @@ const fetchWeatherData = async (location: Location) => {
 
   let result: { list: WeatherApiResponse[] };
   try {
-    const response = await fetch(`${weatherApiUrl}forecast?${queryString}`);
+    const response = await fetch(`${forecastApiUrl}?${queryString}`);
 
     if (response.ok) {
       result = await response.json();
