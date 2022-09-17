@@ -26,7 +26,6 @@ export interface CardProps {
 export const Card = styled.div<CardProps>`
   border: none;
   padding: 1rem;
-  overflow: hidden;
   position: relative;
   border-radius: 2.5rem;
   width: ${({ width }) => width || '100%'};
