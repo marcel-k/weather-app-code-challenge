@@ -1,5 +1,5 @@
 import { Location, WeatherApiResponse } from './interfaces';
-const { apiKey, forecastApiUrl, maxDaysForecast } = appConfig;
+const { apiKey, forecastApiUrl, maxDaysForecast } = (window as any).appConfig as AppConfig;
 
 export interface WeatherData {
   date: Date;
