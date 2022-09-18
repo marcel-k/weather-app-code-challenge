@@ -1,5 +1,3 @@
-import { WeatherApiResponse } from "./interfaces";
-
 export const weatherApiResponse =
 {
   "dt": 1663534800,
