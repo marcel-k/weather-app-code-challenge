@@ -33,7 +33,7 @@ export const Popover: FC<PopoverProps> = (props) => {
       {open &&
         <S.Backdrop>
           <S.Popover open>
-            <S.CloseButton iconName='close' onClick={onClose} />
+            <S.CloseButton data-testid={'close-button-popover'} iconName='close' onClick={onClose} />
             <S.PopoverContent>
               {children}
             </S.PopoverContent>

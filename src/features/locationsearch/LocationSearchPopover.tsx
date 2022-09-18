@@ -55,6 +55,7 @@ export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => 
             required
             type={'search'}
             name={'cityname'}
+            data-testid={'cityname'}
             onChange={(e) => handleInputChange(e, 'cityname')}
           />
         </S.Fieldset>
@@ -64,6 +65,7 @@ export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => 
             required
             type={'search'}
             name={'countrycode'}
+            data-testid={'countrycode'}
             onChange={(e) => handleInputChange(e, 'countrycode')}
           />
         </S.Fieldset>
