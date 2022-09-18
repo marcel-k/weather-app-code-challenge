@@ -70,11 +70,11 @@ export const LocationSearchPopOver: FC<LocationSearchPopoverProps> = (props) => 
           />
         </S.Fieldset>
         {!!error &&
-          <S.ErrorMessage>
+          <S.ErrorMessage data-testid={'error-message'}>
             {error}
           </S.ErrorMessage>
         }
-        <S.OkButton type={'submit'} onClick={handleOkClick}>OK</S.OkButton>
+        <S.OkButton data-testid={'button-ok'} type={'submit'} onClick={handleOkClick}>OK</S.OkButton>
       </S.InputForm>
     </Popover>
   )
