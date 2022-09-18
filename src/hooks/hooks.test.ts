@@ -1,7 +1,19 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 
-test('useToggle', () => {
-  const titleElement = screen.getByText(/todo/i);
-  expect(titleElement).toBeInTheDocument();
+import { useToggle } from './hooks';
+
+
+
+test('useToggle toggles', () => {
+  const { result } = renderHook(() => useToggle(false));
+
+  let [open, toggleOpen] = result.current;
+  expect(open).toBe(false);
+
+  act(() => {
+    toggleOpen();
+  });
+
+  [open, toggleOpen] = result.current;
+  expect(open).toBe(true);
 });
