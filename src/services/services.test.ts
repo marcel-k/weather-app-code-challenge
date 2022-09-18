@@ -21,15 +21,18 @@ const server = setupServer(
 )
 
 beforeAll(() => {
+  //arrange
   server.listen();
-})
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
+});
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 
 test('fetches current weather data', async () => {
+  //act
   const currentWeather = await getCurrentWeather({ cityName: 'Groningen', countryCode: 'NL' });
 
+  //assert
   expect(currentWeather).toEqual({
     "date": new Date('2022-09-18T19:00:00.000Z'),
     "description": "light rain",
